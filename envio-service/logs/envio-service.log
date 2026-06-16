@@ -1,0 +1,60 @@
+16:00:59 INFO  Starting EnvioServiceApplication using Java 21.0.10 with PID 21112 (C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\envio-service\target\classes started by vicen in C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\envio-service)
+16:01:00 INFO  No active profile set, falling back to 1 default profile: "default"
+16:01:00 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+16:01:00 INFO  Finished Spring Data repository scanning in 134 ms. Found 1 JPA repository interface.
+16:01:01 INFO  Tomcat initialized with port 9095 (http)
+16:01:01 INFO  Starting service [Tomcat]
+16:01:01 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+16:01:01 INFO  Root WebApplicationContext: initialization completed in 1356 ms
+16:01:01 INFO  HikariPool-1 - Starting...
+16:01:02 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@132e3594
+16:01:02 INFO  HikariPool-1 - Start completed.
+16:01:04 INFO  Creating database changelog table with name: bd_envio.databasechangelog
+16:01:04 INFO  Reading from bd_envio.databasechangelog
+16:01:04 INFO  Creating snapshot
+16:01:04 INFO  Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
+16:01:04 INFO  Successfully acquired change log lock
+16:01:04 INFO  Using deploymentId: 1035261525
+16:01:04 INFO  Reading from bd_envio.databasechangelog
+16:01:04 INFO  Running Changeset: db/changelog/db.changelog.sql::1::luisana
+16:01:04 INFO  Custom SQL executed
+16:01:04 INFO  ChangeSet db/changelog/db.changelog.sql::1::luisana ran successfully in 17ms
+16:01:04 INFO  Running Changeset: db/changelog/db.changelog.sql::2::luisana
+16:01:04 INFO  Custom SQL executed
+16:01:04 INFO  ChangeSet db/changelog/db.changelog.sql::2::luisana ran successfully in 23ms
+16:01:04 INFO  Running Changeset: db/changelog/db.changelog.sql::3::luisana
+16:01:04 INFO  Custom SQL executed
+16:01:04 INFO  ChangeSet db/changelog/db.changelog.sql::3::luisana ran successfully in 13ms
+16:01:04 INFO  UPDATE SUMMARY
+16:01:04 INFO  Run:                          3
+16:01:04 INFO  Previously run:               0
+16:01:04 INFO  Filtered out:                 0
+16:01:04 INFO  -------------------------------
+16:01:04 INFO  Total change sets:            3
+16:01:04 INFO  Update summary generated
+16:01:04 INFO  Update command completed successfully.
+16:01:04 INFO  Liquibase: Update has been successful. Rows affected: 20
+16:01:04 INFO  Successfully released change log lock
+16:01:04 INFO  Command execution complete
+16:01:04 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+16:01:04 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
+16:01:05 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+16:01:05 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+16:01:05 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_envio?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_envio/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+16:01:06 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+16:01:06 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+16:01:06 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+16:01:06 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16:01:06 INFO  Tomcat started on port 9095 (http) with context path '/'
+16:01:06 INFO  Started EnvioServiceApplication in 7.283 seconds (process running for 7.74)

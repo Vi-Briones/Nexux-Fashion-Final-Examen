@@ -1,0 +1,8 @@
+00:03:36 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+00:03:36 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+00:03:36 INFO  Graceful shutdown complete
+00:03:36 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+00:03:36 INFO  HikariPool-2 - Shutdown initiated...
+00:03:36 INFO  HikariPool-2 - Shutdown completed.
+00:03:36 INFO  Starting ClienteServiceApplication using Java 21.0.10 with PID 17156 (C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\cliente-service\target\classes started by vicen in C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\cliente-service)
+00:03:36 INFO  No active profile set, falling back to 1 default profile: "default"

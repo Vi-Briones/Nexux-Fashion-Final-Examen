@@ -1,0 +1,35 @@
+server:
+  port: 9090
+
+spring:
+  main:
+      web-application-type: reactive
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+          - id: cliente-service
+            uri: http://localhost:9091
+            predicates:
+            - Path=/clientes/**
+
+          - id: compra-service
+            uri: http://localhost:9092
+            predicates:
+            - Path=/compras/**
+          
+          - id: producto-service
+            uri: http://localhost:9093
+            predicates:
+            - Path=/productos/**
+          
+          - id: venta-service
+            uri: http://localhost:9094
+            predicates:
+            - Path=/ventas/**
+
+          - id: envio-service
+            uri: http://localhost:9095
+            predicates:
+            - Path=/envios/**  
