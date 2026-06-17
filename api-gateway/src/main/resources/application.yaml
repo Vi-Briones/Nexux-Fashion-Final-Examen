@@ -33,3 +33,8 @@ spring:
             uri: http://localhost:9095
             predicates:
             - Path=/envios/**  
+
+          - id: envio-inventario
+            uri: http://localhost:9096
+            predicates:
+            - Path=/inventarios/** 
