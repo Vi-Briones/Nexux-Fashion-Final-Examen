@@ -1,48 +1,156 @@
-15:59:50 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 20108 (C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\compra-service\target\classes started by vicen in C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\compra-service)
-15:59:50 INFO  No active profile set, falling back to 1 default profile: "default"
-15:59:50 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-15:59:50 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-15:59:51 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-15:59:51 INFO  Finished Spring Data repository scanning in 136 ms. Found 1 JPA repository interface.
-15:59:51 INFO  Tomcat initialized with port 9092 (http)
-15:59:51 INFO  Starting service [Tomcat]
-15:59:51 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
-15:59:52 INFO  Root WebApplicationContext: initialization completed in 1499 ms
-15:59:52 INFO  HikariPool-1 - Starting...
-15:59:52 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@537cdb9f
-15:59:52 INFO  HikariPool-1 - Start completed.
-15:59:54 INFO  Creating database changelog table with name: bd_compra.databasechangelog
-15:59:54 INFO  Reading from bd_compra.databasechangelog
-15:59:54 INFO  Creating snapshot
-15:59:54 INFO  Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
-15:59:54 INFO  Successfully acquired change log lock
-15:59:54 INFO  Using deploymentId: 1035192143
-15:59:54 INFO  Reading from bd_compra.databasechangelog
-15:59:54 INFO  Running Changeset: db/changelog/db.changelog.sql::1::luisana
-15:59:54 INFO  Custom SQL executed
-15:59:54 INFO  ChangeSet db/changelog/db.changelog.sql::1::luisana ran successfully in 19ms
-15:59:54 INFO  Running Changeset: db/changelog/db.changelog.sql::2::luisana
-15:59:54 INFO  Custom SQL executed
-15:59:54 INFO  ChangeSet db/changelog/db.changelog.sql::2::luisana ran successfully in 24ms
-15:59:54 INFO  Running Changeset: db/changelog/db.changelog.sql::3::luisana
-15:59:54 INFO  Custom SQL executed
-15:59:54 INFO  ChangeSet db/changelog/db.changelog.sql::3::luisana ran successfully in 33ms
-15:59:54 INFO  UPDATE SUMMARY
-15:59:54 INFO  Run:                          3
-15:59:54 INFO  Previously run:               0
-15:59:54 INFO  Filtered out:                 0
-15:59:54 INFO  -------------------------------
-15:59:54 INFO  Total change sets:            3
-15:59:54 INFO  Update summary generated
-15:59:54 INFO  Update command completed successfully.
-15:59:54 INFO  Liquibase: Update has been successful. Rows affected: 20
-15:59:54 INFO  Successfully released change log lock
-15:59:54 INFO  Command execution complete
-15:59:54 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
-15:59:54 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
-15:59:55 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
-15:59:55 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
-15:59:55 INFO  HHH10001005: Database info:
+16:09:26 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 14268 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service)
+16:09:26 INFO  No active profile set, falling back to 1 default profile: "default"
+16:09:26 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+16:09:26 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+16:09:27 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+16:09:27 INFO  Finished Spring Data repository scanning in 146 ms. Found 1 JPA repository interface.
+16:09:28 INFO  Tomcat initialized with port 9092 (http)
+16:09:28 INFO  Starting service [Tomcat]
+16:09:28 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+16:09:28 INFO  Root WebApplicationContext: initialization completed in 2031 ms
+16:09:28 INFO  HikariPool-1 - Starting...
+16:09:30 WARN  Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [com/Nexus_Fashion/compra_service/config/LiquibaseConfig.class]: liquibase.exception.DatabaseException: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+16:09:30 INFO  Stopping service [Tomcat]
+16:09:30 INFO  
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+16:09:30 ERROR Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [com/Nexus_Fashion/compra_service/config/LiquibaseConfig.class]: liquibase.exception.DatabaseException: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at com.Nexus_Fashion.compra_service.CompraServiceApplication.main(CompraServiceApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:52)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [com/Nexus_Fashion/compra_service/config/LiquibaseConfig.class]: liquibase.exception.DatabaseException: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1817)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
+	... 13 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.DatabaseException: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:289)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813)
+	... 20 common frames omitted
+Caused by: liquibase.exception.DatabaseException: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:281)
+	at liquibase.Scope.lambda$child$0(Scope.java:241)
+	at liquibase.Scope.child(Scope.java:250)
+	at liquibase.Scope.child(Scope.java:240)
+	at liquibase.Scope.child(Scope.java:219)
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272)
+	... 22 common frames omitted
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:840)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:276)
+	... 27 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:79)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:142)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:964)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	... 38 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:690)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
+	... 41 common frames omitted
+16:14:11 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 20704 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service)
+16:14:11 INFO  No active profile set, falling back to 1 default profile: "default"
+16:14:11 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+16:14:11 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+16:14:12 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+16:14:13 INFO  Finished Spring Data repository scanning in 154 ms. Found 1 JPA repository interface.
+16:14:13 INFO  Tomcat initialized with port 9092 (http)
+16:14:13 INFO  Starting service [Tomcat]
+16:14:14 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+16:14:14 INFO  Root WebApplicationContext: initialization completed in 2207 ms
+16:14:14 INFO  HikariPool-1 - Starting...
+16:14:14 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@312cfaa3
+16:14:14 INFO  HikariPool-1 - Start completed.
+16:14:17 INFO  Creating database changelog table with name: bd_compra.databasechangelog
+16:14:17 INFO  Reading from bd_compra.databasechangelog
+16:14:17 INFO  Creating snapshot
+16:14:17 INFO  Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
+16:14:18 INFO  Successfully acquired change log lock
+16:14:18 INFO  Using deploymentId: 1640854258
+16:14:18 INFO  Reading from bd_compra.databasechangelog
+16:14:18 INFO  Running Changeset: db/changelog/db.changelog.sql::1::luisana
+16:14:18 INFO  Custom SQL executed
+16:14:18 INFO  ChangeSet db/changelog/db.changelog.sql::1::luisana ran successfully in 25ms
+16:14:18 INFO  Running Changeset: db/changelog/db.changelog.sql::2::luisana
+16:14:18 INFO  Custom SQL executed
+16:14:18 INFO  ChangeSet db/changelog/db.changelog.sql::2::luisana ran successfully in 24ms
+16:14:18 INFO  Running Changeset: db/changelog/db.changelog.sql::3::luisana
+16:14:18 INFO  Custom SQL executed
+16:14:18 INFO  ChangeSet db/changelog/db.changelog.sql::3::luisana ran successfully in 35ms
+16:14:18 INFO  UPDATE SUMMARY
+16:14:18 INFO  Run:                          3
+16:14:18 INFO  Previously run:               0
+16:14:18 INFO  Filtered out:                 0
+16:14:18 INFO  -------------------------------
+16:14:18 INFO  Total change sets:            3
+16:14:18 INFO  Update summary generated
+16:14:18 INFO  Update command completed successfully.
+16:14:18 INFO  Liquibase: Update has been successful. Rows affected: 20
+16:14:18 INFO  Successfully released change log lock
+16:14:18 INFO  Command execution complete
+16:14:18 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+16:14:18 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
+16:14:19 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+16:14:19 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+16:14:19 INFO  HHH10001005: Database info:
 	Database JDBC URL [jdbc:mysql://localhost:3306/bd_compra?createDatabaseIfNotExist=true]
 	Database driver: MySQL Connector/J
 	Database dialect: MySQLDialect
@@ -54,44 +162,54 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-15:59:56 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-15:59:56 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
-15:59:56 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
-15:59:56 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-15:59:56 INFO  Tomcat started on port 9092 (http) with context path '/'
-15:59:56 INFO  Started CompraServiceApplication in 7.0 seconds (process running for 7.579)
-16:12:35 INFO  Restarting due to 14 class path changes (0 additions, 0 deletions, 14 modifications)
-16:12:35 INFO  Commencing graceful shutdown. Waiting for active requests to complete
-16:12:35 INFO  Graceful shutdown complete
-16:12:35 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
-16:12:35 INFO  HikariPool-1 - Shutdown initiated...
-16:12:35 INFO  HikariPool-1 - Shutdown completed.
-16:12:35 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 20108 (C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\compra-service\target\classes started by vicen in C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\compra-service)
-16:12:35 INFO  No active profile set, falling back to 1 default profile: "default"
-16:12:36 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-16:12:36 INFO  Finished Spring Data repository scanning in 25 ms. Found 1 JPA repository interface.
-16:12:36 INFO  Tomcat initialized with port 9092 (http)
-16:12:36 INFO  Starting service [Tomcat]
-16:12:36 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
-16:12:36 INFO  Root WebApplicationContext: initialization completed in 1069 ms
-16:12:36 INFO  HikariPool-2 - Starting...
-16:12:36 INFO  HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6447344d
-16:12:36 INFO  HikariPool-2 - Start completed.
-16:12:37 INFO  Reading from bd_compra.databasechangelog
-16:12:37 INFO  Database is up to date, no changesets to execute
-16:12:37 INFO  Reading from bd_compra.databasechangelog
-16:12:37 INFO  UPDATE SUMMARY
-16:12:37 INFO  Run:                          0
-16:12:37 INFO  Previously run:               3
-16:12:37 INFO  Filtered out:                 0
-16:12:37 INFO  -------------------------------
-16:12:37 INFO  Total change sets:            3
-16:12:37 INFO  Update summary generated
-16:12:37 INFO  Command execution complete
-16:12:37 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
-16:12:37 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
-16:12:37 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
-16:12:37 INFO  HHH10001005: Database info:
+16:14:20 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+16:14:20 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+16:14:20 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+16:14:21 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16:14:21 INFO  Tomcat started on port 9092 (http) with context path '/'
+16:14:21 INFO  Started CompraServiceApplication in 10.689 seconds (process running for 11.292)
+16:14:48 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+16:14:48 INFO  Initializing Servlet 'dispatcherServlet'
+16:14:48 INFO  Completed initialization in 3 ms
+16:14:48 INFO  GET /compras
+16:14:48 INFO  Listando todas las compras
+16:14:48 INFO  GET /compras - Se retornaron 10 compras exitosamente
+16:16:30 INFO  GET /compras/1 - Buscando compra por ID
+16:16:30 INFO  Buscando compra con ID=1
+16:16:30 INFO  Compra encontrada con ID=1
+16:16:30 INFO  GET /compras/1 - Compra recuperada exitosamente
+16:20:12 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+16:20:12 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+16:20:12 INFO  Graceful shutdown complete
+16:20:12 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+16:20:12 INFO  HikariPool-1 - Shutdown initiated...
+16:20:12 INFO  HikariPool-1 - Shutdown completed.
+16:20:12 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 20704 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service)
+16:20:12 INFO  No active profile set, falling back to 1 default profile: "default"
+16:20:13 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+16:20:13 INFO  Finished Spring Data repository scanning in 10 ms. Found 1 JPA repository interface.
+16:20:13 INFO  Tomcat initialized with port 9092 (http)
+16:20:13 INFO  Starting service [Tomcat]
+16:20:13 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+16:20:13 INFO  Root WebApplicationContext: initialization completed in 422 ms
+16:20:13 INFO  HikariPool-2 - Starting...
+16:20:13 INFO  HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c149287
+16:20:13 INFO  HikariPool-2 - Start completed.
+16:20:13 INFO  Reading from bd_compra.databasechangelog
+16:20:13 INFO  Database is up to date, no changesets to execute
+16:20:13 INFO  Reading from bd_compra.databasechangelog
+16:20:13 INFO  UPDATE SUMMARY
+16:20:13 INFO  Run:                          0
+16:20:13 INFO  Previously run:               3
+16:20:13 INFO  Filtered out:                 0
+16:20:13 INFO  -------------------------------
+16:20:13 INFO  Total change sets:            3
+16:20:13 INFO  Update summary generated
+16:20:13 INFO  Command execution complete
+16:20:13 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+16:20:13 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+16:20:13 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+16:20:13 INFO  HHH10001005: Database info:
 	Database JDBC URL [jdbc:mysql://localhost:3306/bd_compra?createDatabaseIfNotExist=true]
 	Database driver: MySQL Connector/J
 	Database dialect: MySQLDialect
@@ -103,44 +221,44 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-16:12:37 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-16:12:37 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
-16:12:37 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-16:12:37 INFO  Tomcat started on port 9092 (http) with context path '/'
-16:12:37 INFO  Started CompraServiceApplication in 1.963 seconds (process running for 768.238)
-16:12:37 INFO  Condition evaluation unchanged
-16:13:03 INFO  Restarting due to 14 class path changes (0 additions, 0 deletions, 14 modifications)
-16:13:03 INFO  Commencing graceful shutdown. Waiting for active requests to complete
-16:13:03 INFO  Graceful shutdown complete
-16:13:03 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
-16:13:03 INFO  HikariPool-2 - Shutdown initiated...
-16:13:03 INFO  HikariPool-2 - Shutdown completed.
-16:13:03 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 20108 (C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\compra-service\target\classes started by vicen in C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\compra-service)
-16:13:03 INFO  No active profile set, falling back to 1 default profile: "default"
-16:13:03 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-16:13:03 INFO  Finished Spring Data repository scanning in 10 ms. Found 1 JPA repository interface.
-16:13:03 INFO  Tomcat initialized with port 9092 (http)
-16:13:03 INFO  Starting service [Tomcat]
-16:13:03 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
-16:13:03 INFO  Root WebApplicationContext: initialization completed in 314 ms
-16:13:03 INFO  HikariPool-3 - Starting...
-16:13:03 INFO  HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e27cc8c
-16:13:03 INFO  HikariPool-3 - Start completed.
-16:13:04 INFO  Reading from bd_compra.databasechangelog
-16:13:04 INFO  Database is up to date, no changesets to execute
-16:13:04 INFO  Reading from bd_compra.databasechangelog
-16:13:04 INFO  UPDATE SUMMARY
-16:13:04 INFO  Run:                          0
-16:13:04 INFO  Previously run:               3
-16:13:04 INFO  Filtered out:                 0
-16:13:04 INFO  -------------------------------
-16:13:04 INFO  Total change sets:            3
-16:13:04 INFO  Update summary generated
-16:13:04 INFO  Command execution complete
-16:13:04 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
-16:13:04 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
-16:13:04 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
-16:13:04 INFO  HHH10001005: Database info:
+16:20:13 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+16:20:13 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+16:20:13 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16:20:13 INFO  Tomcat started on port 9092 (http) with context path '/'
+16:20:13 INFO  Started CompraServiceApplication in 1.069 seconds (process running for 363.136)
+16:20:13 INFO  Condition evaluation unchanged
+16:20:21 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+16:20:21 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+16:20:21 INFO  Graceful shutdown complete
+16:20:21 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+16:20:21 INFO  HikariPool-2 - Shutdown initiated...
+16:20:21 INFO  HikariPool-2 - Shutdown completed.
+16:20:21 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 20704 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service)
+16:20:21 INFO  No active profile set, falling back to 1 default profile: "default"
+16:20:21 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+16:20:21 INFO  Finished Spring Data repository scanning in 8 ms. Found 1 JPA repository interface.
+16:20:21 INFO  Tomcat initialized with port 9092 (http)
+16:20:21 INFO  Starting service [Tomcat]
+16:20:21 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+16:20:21 INFO  Root WebApplicationContext: initialization completed in 326 ms
+16:20:21 INFO  HikariPool-3 - Starting...
+16:20:21 INFO  HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3a749fbf
+16:20:21 INFO  HikariPool-3 - Start completed.
+16:20:21 INFO  Reading from bd_compra.databasechangelog
+16:20:21 INFO  Database is up to date, no changesets to execute
+16:20:21 INFO  Reading from bd_compra.databasechangelog
+16:20:22 INFO  UPDATE SUMMARY
+16:20:22 INFO  Run:                          0
+16:20:22 INFO  Previously run:               3
+16:20:22 INFO  Filtered out:                 0
+16:20:22 INFO  -------------------------------
+16:20:22 INFO  Total change sets:            3
+16:20:22 INFO  Update summary generated
+16:20:22 INFO  Command execution complete
+16:20:22 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+16:20:22 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+16:20:22 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+16:20:22 INFO  HHH10001005: Database info:
 	Database JDBC URL [jdbc:mysql://localhost:3306/bd_compra?createDatabaseIfNotExist=true]
 	Database driver: MySQL Connector/J
 	Database dialect: MySQLDialect
@@ -152,44 +270,44 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-16:13:04 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-16:13:04 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
-16:13:04 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-16:13:04 INFO  Tomcat started on port 9092 (http) with context path '/'
-16:13:04 INFO  Started CompraServiceApplication in 0.787 seconds (process running for 795.038)
-16:13:04 INFO  Condition evaluation unchanged
-16:13:07 INFO  Restarting due to 14 class path changes (0 additions, 0 deletions, 14 modifications)
-16:13:07 INFO  Commencing graceful shutdown. Waiting for active requests to complete
-16:13:07 INFO  Graceful shutdown complete
-16:13:07 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
-16:13:07 INFO  HikariPool-3 - Shutdown initiated...
-16:13:07 INFO  HikariPool-3 - Shutdown completed.
-16:13:07 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 20108 (C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\compra-service\target\classes started by vicen in C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\compra-service)
-16:13:07 INFO  No active profile set, falling back to 1 default profile: "default"
-16:13:08 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-16:13:08 INFO  Finished Spring Data repository scanning in 8 ms. Found 1 JPA repository interface.
-16:13:08 INFO  Tomcat initialized with port 9092 (http)
-16:13:08 INFO  Starting service [Tomcat]
-16:13:08 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
-16:13:08 INFO  Root WebApplicationContext: initialization completed in 290 ms
-16:13:08 INFO  HikariPool-4 - Starting...
-16:13:08 INFO  HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e48597
-16:13:08 INFO  HikariPool-4 - Start completed.
-16:13:08 INFO  Reading from bd_compra.databasechangelog
-16:13:08 INFO  Database is up to date, no changesets to execute
-16:13:08 INFO  Reading from bd_compra.databasechangelog
-16:13:08 INFO  UPDATE SUMMARY
-16:13:08 INFO  Run:                          0
-16:13:08 INFO  Previously run:               3
-16:13:08 INFO  Filtered out:                 0
-16:13:08 INFO  -------------------------------
-16:13:08 INFO  Total change sets:            3
-16:13:08 INFO  Update summary generated
-16:13:08 INFO  Command execution complete
-16:13:08 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
-16:13:08 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
-16:13:08 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
-16:13:08 INFO  HHH10001005: Database info:
+16:20:22 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+16:20:22 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+16:20:22 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16:20:22 INFO  Tomcat started on port 9092 (http) with context path '/'
+16:20:22 INFO  Started CompraServiceApplication in 0.883 seconds (process running for 371.636)
+16:20:22 INFO  Condition evaluation unchanged
+16:20:25 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+16:20:25 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+16:20:25 INFO  Graceful shutdown complete
+16:20:25 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+16:20:25 INFO  HikariPool-3 - Shutdown initiated...
+16:20:25 INFO  HikariPool-3 - Shutdown completed.
+16:20:25 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 20704 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service)
+16:20:25 INFO  No active profile set, falling back to 1 default profile: "default"
+16:20:26 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+16:20:26 INFO  Finished Spring Data repository scanning in 8 ms. Found 1 JPA repository interface.
+16:20:26 INFO  Tomcat initialized with port 9092 (http)
+16:20:26 INFO  Starting service [Tomcat]
+16:20:26 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+16:20:26 INFO  Root WebApplicationContext: initialization completed in 316 ms
+16:20:26 INFO  HikariPool-4 - Starting...
+16:20:26 INFO  HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a382ae3
+16:20:26 INFO  HikariPool-4 - Start completed.
+16:20:26 INFO  Reading from bd_compra.databasechangelog
+16:20:26 INFO  Database is up to date, no changesets to execute
+16:20:26 INFO  Reading from bd_compra.databasechangelog
+16:20:26 INFO  UPDATE SUMMARY
+16:20:26 INFO  Run:                          0
+16:20:26 INFO  Previously run:               3
+16:20:26 INFO  Filtered out:                 0
+16:20:26 INFO  -------------------------------
+16:20:26 INFO  Total change sets:            3
+16:20:26 INFO  Update summary generated
+16:20:26 INFO  Command execution complete
+16:20:26 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+16:20:26 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+16:20:26 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+16:20:26 INFO  HHH10001005: Database info:
 	Database JDBC URL [jdbc:mysql://localhost:3306/bd_compra?createDatabaseIfNotExist=true]
 	Database driver: MySQL Connector/J
 	Database dialect: MySQLDialect
@@ -201,9 +319,185 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-16:13:08 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-16:13:08 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
-16:13:08 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-16:13:08 INFO  Tomcat started on port 9092 (http) with context path '/'
-16:13:08 INFO  Started CompraServiceApplication in 0.733 seconds (process running for 799.286)
-16:13:08 INFO  Condition evaluation unchanged
+16:20:26 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+16:20:26 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+16:20:26 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16:20:26 INFO  Tomcat started on port 9092 (http) with context path '/'
+16:20:26 INFO  Started CompraServiceApplication in 0.842 seconds (process running for 375.986)
+16:20:26 INFO  Condition evaluation unchanged
+20:27:49 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 4328 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service)
+20:27:49 INFO  No active profile set, falling back to 1 default profile: "default"
+20:27:49 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+20:27:49 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+20:27:50 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:27:50 INFO  Finished Spring Data repository scanning in 184 ms. Found 1 JPA repository interface.
+20:27:51 INFO  Tomcat initialized with port 9092 (http)
+20:27:51 INFO  Starting service [Tomcat]
+20:27:51 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+20:27:51 INFO  Root WebApplicationContext: initialization completed in 2434 ms
+20:27:51 INFO  HikariPool-1 - Starting...
+20:27:52 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6769f0d
+20:27:52 INFO  HikariPool-1 - Start completed.
+20:27:55 INFO  Reading from bd_compra.databasechangelog
+20:27:55 INFO  Database is up to date, no changesets to execute
+20:27:55 INFO  Reading from bd_compra.databasechangelog
+20:27:55 INFO  UPDATE SUMMARY
+20:27:55 INFO  Run:                          0
+20:27:55 INFO  Previously run:               3
+20:27:55 INFO  Filtered out:                 0
+20:27:55 INFO  -------------------------------
+20:27:55 INFO  Total change sets:            3
+20:27:55 INFO  Update summary generated
+20:27:55 INFO  Command execution complete
+20:27:56 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+20:27:56 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
+20:27:57 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+20:27:57 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+20:27:57 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_compra?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_compra/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+20:27:58 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+20:27:58 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:27:58 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+20:27:59 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:28:00 INFO  Tomcat started on port 9092 (http) with context path '/'
+20:28:00 INFO  Started CompraServiceApplication in 12.07 seconds (process running for 13.124)
+20:28:55 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:28:55 INFO  Initializing Servlet 'dispatcherServlet'
+20:28:55 INFO  Completed initialization in 3 ms
+20:28:55 INFO  GET /compras
+20:28:55 INFO  Listando todas las compras
+20:28:56 INFO  GET /compras - Se retornaron 10 compras exitosamente
+20:29:09 INFO  GET /compras/4 - Buscando compra por ID
+20:29:09 INFO  Buscando compra con ID=4
+20:29:09 INFO  Compra encontrada con ID=4
+20:29:09 INFO  GET /compras/4 - Compra recuperada exitosamente
+20:29:12 INFO  GET /compras/1 - Buscando compra por ID
+20:29:12 INFO  Buscando compra con ID=1
+20:29:12 INFO  Compra encontrada con ID=1
+20:29:12 INFO  GET /compras/1 - Compra recuperada exitosamente
+20:43:51 INFO  GET /compras
+20:43:51 INFO  Listando todas las compras
+20:43:52 INFO  GET /compras - Se retornaron 10 compras exitosamente
+20:43:55 INFO  GET /compras/1 - Buscando compra por ID
+20:43:55 INFO  Buscando compra con ID=1
+20:43:55 INFO  Compra encontrada con ID=1
+20:43:55 INFO  GET /compras/1 - Compra recuperada exitosamente
+20:54:21 INFO  GET /compras/1 - Buscando compra por ID
+20:54:21 INFO  Buscando compra con ID=1
+20:54:21 INFO  Compra encontrada con ID=1
+20:54:21 INFO  GET /compras/1 - Compra recuperada exitosamente
+20:54:25 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+20:54:25 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+20:54:25 INFO  Graceful shutdown complete
+20:54:25 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+20:54:25 INFO  HikariPool-1 - Shutdown initiated...
+20:54:25 INFO  HikariPool-1 - Shutdown completed.
+20:54:25 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 4328 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service)
+20:54:25 INFO  No active profile set, falling back to 1 default profile: "default"
+20:54:26 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:54:26 INFO  Finished Spring Data repository scanning in 14 ms. Found 1 JPA repository interface.
+20:54:26 INFO  Tomcat initialized with port 9092 (http)
+20:54:26 INFO  Starting service [Tomcat]
+20:54:26 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+20:54:26 INFO  Root WebApplicationContext: initialization completed in 651 ms
+20:54:26 INFO  HikariPool-2 - Starting...
+20:54:26 INFO  HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@64ee04bb
+20:54:26 INFO  HikariPool-2 - Start completed.
+20:54:26 INFO  Reading from bd_compra.databasechangelog
+20:54:26 INFO  Database is up to date, no changesets to execute
+20:54:26 INFO  Reading from bd_compra.databasechangelog
+20:54:26 INFO  UPDATE SUMMARY
+20:54:26 INFO  Run:                          0
+20:54:26 INFO  Previously run:               3
+20:54:26 INFO  Filtered out:                 0
+20:54:26 INFO  -------------------------------
+20:54:26 INFO  Total change sets:            3
+20:54:26 INFO  Update summary generated
+20:54:26 INFO  Command execution complete
+20:54:26 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+20:54:26 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+20:54:26 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+20:54:26 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_compra?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_compra/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+20:54:27 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+20:54:27 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:54:27 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:54:27 INFO  Tomcat started on port 9092 (http) with context path '/'
+20:54:27 INFO  Started CompraServiceApplication in 1.655 seconds (process running for 1600.409)
+20:54:27 INFO  Condition evaluation unchanged
+20:54:32 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:54:32 INFO  Initializing Servlet 'dispatcherServlet'
+20:54:32 INFO  Completed initialization in 2 ms
+20:54:32 INFO  GET /compras/1 - Buscando compra por ID
+20:54:32 INFO  Buscando compra con ID=1
+20:54:32 INFO  Compra encontrada con ID=1
+20:54:32 INFO  GET /compras/1 - Compra recuperada exitosamente
+20:59:09 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+20:59:09 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+20:59:09 INFO  Graceful shutdown complete
+20:59:09 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+20:59:09 INFO  HikariPool-2 - Shutdown initiated...
+20:59:09 INFO  HikariPool-2 - Shutdown completed.
+20:59:10 INFO  Starting CompraServiceApplication using Java 21.0.10 with PID 4328 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\compra-service)
+20:59:10 INFO  No active profile set, falling back to 1 default profile: "default"
+20:59:10 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:59:10 INFO  Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+20:59:10 INFO  Tomcat initialized with port 9092 (http)
+20:59:10 INFO  Starting service [Tomcat]
+20:59:10 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+20:59:10 INFO  Root WebApplicationContext: initialization completed in 652 ms
+20:59:10 INFO  HikariPool-3 - Starting...
+20:59:10 INFO  HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@887eeb0
+20:59:10 INFO  HikariPool-3 - Start completed.
+20:59:11 INFO  Reading from bd_compra.databasechangelog
+20:59:11 INFO  Database is up to date, no changesets to execute
+20:59:11 INFO  Reading from bd_compra.databasechangelog
+20:59:11 INFO  UPDATE SUMMARY
+20:59:11 INFO  Run:                          0
+20:59:11 INFO  Previously run:               3
+20:59:11 INFO  Filtered out:                 0
+20:59:11 INFO  -------------------------------
+20:59:11 INFO  Total change sets:            3
+20:59:11 INFO  Update summary generated
+20:59:11 INFO  Command execution complete
+20:59:11 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+20:59:11 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+20:59:11 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+20:59:11 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_compra?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_compra/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+20:59:11 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+20:59:11 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:59:11 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:59:11 INFO  Tomcat started on port 9092 (http) with context path '/'
+20:59:11 INFO  Started CompraServiceApplication in 1.576 seconds (process running for 1884.67)
+20:59:11 INFO  Condition evaluation unchanged

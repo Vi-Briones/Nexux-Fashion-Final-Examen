@@ -1,4 +1,4 @@
-package Nexus_Fashion.envio_service.confing;
+package Nexus_Fashion.envio_service.config;
 
 import javax.sql.DataSource;
 

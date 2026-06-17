@@ -20,8 +20,6 @@ public class ClienteModelAssembler implements RepresentationModelAssembler<Clien
 
         model.add(linkTo(methodOn(ClienteController.class).obtenerCliente(cliente.getIdCliente())).withSelfRel());
         model.add(linkTo(methodOn(ClienteController.class).listarClientes()).withRel("todos-los-clientes"));
-        model.add(linkTo(methodOn(ClienteController.class).existeCliente(cliente.getIdCliente())).withRel("verificar-existencia"));
-        
         return model;
     }
 }

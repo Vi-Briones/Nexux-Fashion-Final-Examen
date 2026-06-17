@@ -47,7 +47,7 @@ public class CompraController {
     }
 
     @GetMapping
-    public ResponseEntity<CollectionModel<CompraDTO>> listarCompras() {
+    public ResponseEntity<CollectionModel<EntityModel<CompraDTO>>> listarCompras() {
         logger.info("GET /compras");
 
         List<Compra> compras = compraService.listar();
@@ -64,7 +64,7 @@ public class CompraController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CompraDTO> obtenerCompra(@PathVariable Long id) {
+    public ResponseEntity<EntityModel<CompraDTO>> obtenerCompra(@PathVariable Long id) {
         logger.info("GET /compras/{} - Buscando compra por ID", id);
         
         Compra compra = compraService.buscarPorId(id);
@@ -74,7 +74,22 @@ public class CompraController {
         }
         
         logger.info("GET /compras/{} - Compra recuperada exitosamente", id);
-        return ResponseEntity.ok(CompraDTO.fromModel(compra));
+        return ResponseEntity.ok(assembler.toModel(compra));
+    }
+    
+    @GetMapping("/{id}/exists")
+    public ResponseEntity<Boolean> existeCompra(@PathVariable Long id) {
+        logger.info("GET /compras/{}/exists - Validación externa de compra solicitada", id);
+        
+        Boolean existe = compraService.existePorId(id);
+        
+        if (Boolean.TRUE.equals(existe)) {
+            logger.info("GET /compras/{}/exists - Resultado: La compra existe", id);
+        } else {
+            logger.warn("GET /compras/{}/exists - Resultado: La compra NO existe", id);
+        }
+        
+        return ResponseEntity.ok(existe);
     }
 
     @PutMapping("/{id}")
@@ -119,27 +134,18 @@ public class CompraController {
     }
 
     @GetMapping("/cliente/{idCliente}/total")
-    public ResponseEntity<Long> totalComprasPorCliente(@PathVariable Long idCliente) {
+    public ResponseEntity<EntityModel<Long>> totalComprasPorCliente(@PathVariable Long idCliente) {
         logger.info("GET /compras/cliente/{}/total - Calculando total de compras", idCliente);
         
         long total = compraService.totalComprasPorCliente(idCliente);
-        
         logger.info("GET /compras/cliente/{}/total - Total: {}", idCliente, total);
-        return ResponseEntity.ok(total);
+        
+        EntityModel<Long> modeloTotal = EntityModel.of(total,
+                linkTo(methodOn(CompraController.class).totalComprasPorCliente(idCliente)).withSelfRel(),
+                linkTo(methodOn(CompraController.class).listarComprasPorCliente(idCliente)).withRel("compras-del-cliente"));
+                
+        return ResponseEntity.ok(modeloTotal);
     }
 
-    @GetMapping("/{id}/exists")
-    public ResponseEntity<Boolean> existeCompra(@PathVariable Long id) {
-        logger.info("GET /compras/{}/exists - Validación externa de compra solicitada", id);
-        
-        Boolean existe = compraService.existePorId(id);
-        
-        if (Boolean.TRUE.equals(existe)) {
-            logger.info("GET /compras/{}/exists - Resultado: La compra existe", id);
-        } else {
-            logger.warn("GET /compras/{}/exists - Resultado: La compra NO existe", id);
-        }
-        
-        return ResponseEntity.ok(existe);
-    }
+    
 }

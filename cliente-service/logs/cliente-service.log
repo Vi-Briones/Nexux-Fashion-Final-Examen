@@ -6,3 +6,247 @@
 00:03:36 INFO  HikariPool-2 - Shutdown completed.
 00:03:36 INFO  Starting ClienteServiceApplication using Java 21.0.10 with PID 17156 (C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\cliente-service\target\classes started by vicen in C:\Users\vicen\OneDrive\Escritorio\Nexus-fashion - final\cliente-service)
 00:03:36 INFO  No active profile set, falling back to 1 default profile: "default"
+20:06:58 INFO  Starting ClienteServiceApplication using Java 21.0.10 with PID 9684 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service)
+20:06:58 INFO  No active profile set, falling back to 1 default profile: "default"
+20:06:58 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+20:06:58 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+20:07:00 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:07:00 INFO  Finished Spring Data repository scanning in 221 ms. Found 1 JPA repository interface.
+20:07:01 INFO  Tomcat initialized with port 9091 (http)
+20:07:01 INFO  Starting service [Tomcat]
+20:07:01 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+20:07:01 INFO  Root WebApplicationContext: initialization completed in 3148 ms
+20:07:01 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+20:07:01 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
+20:07:02 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+20:07:02 INFO  HikariPool-1 - Starting...
+20:07:02 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4dac8006
+20:07:03 INFO  HikariPool-1 - Start completed.
+20:07:03 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+20:07:03 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_cliente?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_cliente/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+20:07:04 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+20:07:04 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:07:04 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+20:07:08 INFO  Reading from bd_cliente.databasechangelog
+20:07:08 INFO  Database is up to date, no changesets to execute
+20:07:08 INFO  Reading from bd_cliente.databasechangelog
+20:07:08 INFO  UPDATE SUMMARY
+20:07:08 INFO  Run:                          0
+20:07:08 INFO  Previously run:               4
+20:07:08 INFO  Filtered out:                 0
+20:07:08 INFO  -------------------------------
+20:07:08 INFO  Total change sets:            4
+20:07:08 INFO  Update summary generated
+20:07:08 INFO  Command execution complete
+20:07:08 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:07:09 INFO  Exposing 1 endpoint beneath base path '/actuator'
+20:07:09 INFO  Tomcat started on port 9091 (http) with context path '/'
+20:07:09 INFO  Started ClienteServiceApplication in 12.308 seconds (process running for 13.132)
+20:07:37 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:07:37 INFO  Initializing Servlet 'dispatcherServlet'
+20:07:37 INFO  Completed initialization in 3 ms
+20:07:37 INFO  GET /clientes - Solicitando la lista completa de clientes
+20:07:37 INFO  Servicio Cliente: Solicitando consulta de todos los clientes a la base de datos
+20:07:37 INFO  Servicio Cliente: Consulta finalizada. Se recuperaron 11 registros.
+20:07:38 INFO  GET /clientes - Se retornaron 11 clientes exitosamente
+20:07:44 INFO  GET /clientes - Solicitando la lista completa de clientes
+20:07:44 INFO  Servicio Cliente: Solicitando consulta de todos los clientes a la base de datos
+20:07:44 INFO  Servicio Cliente: Consulta finalizada. Se recuperaron 11 registros.
+20:07:44 INFO  GET /clientes - Se retornaron 11 clientes exitosamente
+20:08:00 INFO  GET /clientes/1 - Buscando cliente por ID
+20:08:00 INFO  Servicio Cliente: Buscando cliente con ID=1
+20:08:00 INFO  Servicio Cliente: Cliente encontrado con ID=1
+20:08:00 INFO  GET /clientes/1 - Cliente recuperado exitosamente
+20:08:37 INFO  GET /clientes/1 - Buscando cliente por ID
+20:08:37 INFO  Servicio Cliente: Buscando cliente con ID=1
+20:08:37 INFO  Servicio Cliente: Cliente encontrado con ID=1
+20:08:37 INFO  GET /clientes/1 - Cliente recuperado exitosamente
+20:08:59 INFO  GET /clientes/1/exists - Petición de validación externa recibida
+20:08:59 INFO  Servicio Cliente: Evaluando existencia en la base de datos para el ID=1
+20:09:00 INFO  Servicio Cliente: Confirmado. El ID=1 SÍ existe.
+20:09:00 INFO  GET /clientes/1/exists - Resultado: El cliente SÍ existe
+20:10:22 INFO  GET /clientes/1 - Buscando cliente por ID
+20:10:22 INFO  Servicio Cliente: Buscando cliente con ID=1
+20:10:22 INFO  Servicio Cliente: Cliente encontrado con ID=1
+20:10:22 INFO  GET /clientes/1 - Cliente recuperado exitosamente
+20:14:37 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+20:14:37 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+20:14:37 INFO  Graceful shutdown complete
+20:14:37 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+20:14:37 INFO  HikariPool-1 - Shutdown initiated...
+20:14:37 INFO  HikariPool-1 - Shutdown completed.
+20:14:37 INFO  Starting ClienteServiceApplication using Java 21.0.10 with PID 9684 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service)
+20:14:37 INFO  No active profile set, falling back to 1 default profile: "default"
+20:14:38 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:14:38 INFO  Finished Spring Data repository scanning in 18 ms. Found 1 JPA repository interface.
+20:14:38 INFO  Tomcat initialized with port 9091 (http)
+20:14:38 INFO  Starting service [Tomcat]
+20:14:38 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+20:14:38 INFO  Root WebApplicationContext: initialization completed in 959 ms
+20:14:39 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+20:14:39 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+20:14:39 INFO  HikariPool-2 - Starting...
+20:14:39 INFO  HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@67d62446
+20:14:39 INFO  HikariPool-2 - Start completed.
+20:14:39 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+20:14:39 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_cliente?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_cliente/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+20:14:39 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+20:14:39 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:14:39 INFO  Reading from bd_cliente.databasechangelog
+20:14:39 INFO  Database is up to date, no changesets to execute
+20:14:39 INFO  Reading from bd_cliente.databasechangelog
+20:14:39 INFO  UPDATE SUMMARY
+20:14:39 INFO  Run:                          0
+20:14:39 INFO  Previously run:               4
+20:14:39 INFO  Filtered out:                 0
+20:14:39 INFO  -------------------------------
+20:14:39 INFO  Total change sets:            4
+20:14:39 INFO  Update summary generated
+20:14:39 INFO  Command execution complete
+20:14:39 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:14:40 INFO  Exposing 1 endpoint beneath base path '/actuator'
+20:14:40 INFO  Tomcat started on port 9091 (http) with context path '/'
+20:14:40 INFO  Started ClienteServiceApplication in 2.204 seconds (process running for 463.333)
+20:14:40 INFO  Condition evaluation unchanged
+20:14:43 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:14:43 INFO  Initializing Servlet 'dispatcherServlet'
+20:14:43 INFO  Completed initialization in 4 ms
+20:14:43 INFO  GET /clientes - Solicitando la lista completa de clientes
+20:14:43 INFO  Servicio Cliente: Solicitando consulta de todos los clientes a la base de datos
+20:14:43 INFO  Servicio Cliente: Consulta finalizada. Se recuperaron 11 registros.
+20:14:43 INFO  GET /clientes - Se retornaron 11 clientes exitosamente
+20:14:48 INFO  GET /clientes/1 - Buscando cliente por ID
+20:14:48 INFO  Servicio Cliente: Buscando cliente con ID=1
+20:14:48 INFO  Servicio Cliente: Cliente encontrado con ID=1
+20:14:48 INFO  GET /clientes/1 - Cliente recuperado exitosamente
+20:15:21 INFO  GET /clientes/1/exists - Petición de validación externa recibida
+20:15:21 INFO  Servicio Cliente: Evaluando existencia en la base de datos para el ID=1
+20:15:21 INFO  Servicio Cliente: Confirmado. El ID=1 SÍ existe.
+20:15:21 INFO  GET /clientes/1/exists - Resultado: El cliente SÍ existe
+20:27:25 INFO  GET /clientes/1 - Buscando cliente por ID
+20:27:25 INFO  Servicio Cliente: Buscando cliente con ID=1
+20:27:25 INFO  Servicio Cliente: Cliente encontrado con ID=1
+20:27:25 INFO  GET /clientes/1 - Cliente recuperado exitosamente
+20:28:35 WARN  Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource compra for request '/compra'.]
+20:43:48 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+20:43:48 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+20:43:48 INFO  Graceful shutdown complete
+20:43:48 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+20:43:48 INFO  HikariPool-2 - Shutdown initiated...
+20:43:48 INFO  HikariPool-2 - Shutdown completed.
+20:43:48 INFO  Starting ClienteServiceApplication using Java 21.0.10 with PID 9684 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service)
+20:43:48 INFO  No active profile set, falling back to 1 default profile: "default"
+20:43:49 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:43:49 INFO  Finished Spring Data repository scanning in 19 ms. Found 1 JPA repository interface.
+20:43:49 INFO  Tomcat initialized with port 9091 (http)
+20:43:49 INFO  Starting service [Tomcat]
+20:43:49 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+20:43:49 INFO  Root WebApplicationContext: initialization completed in 915 ms
+20:43:49 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+20:43:49 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+20:43:49 INFO  HikariPool-3 - Starting...
+20:43:50 INFO  HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a8200bb
+20:43:50 INFO  HikariPool-3 - Start completed.
+20:43:50 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+20:43:50 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_cliente?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_cliente/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+20:43:50 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+20:43:50 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:43:50 INFO  Reading from bd_cliente.databasechangelog
+20:43:50 INFO  Database is up to date, no changesets to execute
+20:43:50 INFO  Reading from bd_cliente.databasechangelog
+20:43:50 INFO  UPDATE SUMMARY
+20:43:50 INFO  Run:                          0
+20:43:50 INFO  Previously run:               4
+20:43:50 INFO  Filtered out:                 0
+20:43:50 INFO  -------------------------------
+20:43:50 INFO  Total change sets:            4
+20:43:50 INFO  Update summary generated
+20:43:50 INFO  Command execution complete
+20:43:50 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:43:50 INFO  Exposing 1 endpoint beneath base path '/actuator'
+20:43:50 INFO  Tomcat started on port 9091 (http) with context path '/'
+20:43:50 INFO  Started ClienteServiceApplication in 2.111 seconds (process running for 2214.321)
+20:43:50 INFO  Condition evaluation unchanged
+20:54:59 INFO  Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+20:54:59 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+20:54:59 INFO  Graceful shutdown complete
+20:54:59 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+20:54:59 INFO  HikariPool-3 - Shutdown initiated...
+20:54:59 INFO  HikariPool-3 - Shutdown completed.
+20:54:59 INFO  Starting ClienteServiceApplication using Java 21.0.10 with PID 9684 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service)
+20:54:59 INFO  No active profile set, falling back to 1 default profile: "default"
+20:55:00 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+20:55:00 INFO  Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+20:55:00 INFO  Tomcat initialized with port 9091 (http)
+20:55:00 INFO  Starting service [Tomcat]
+20:55:00 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+20:55:01 INFO  Root WebApplicationContext: initialization completed in 1017 ms
+20:55:01 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+20:55:01 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+20:55:01 INFO  HikariPool-4 - Starting...
+20:55:01 INFO  HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@43b13396
+20:55:01 INFO  HikariPool-4 - Start completed.
+20:55:01 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+20:55:01 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_cliente?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_cliente/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+20:55:01 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+20:55:01 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+20:55:01 INFO  Reading from bd_cliente.databasechangelog
+20:55:01 INFO  Database is up to date, no changesets to execute
+20:55:01 INFO  Reading from bd_cliente.databasechangelog
+20:55:01 INFO  UPDATE SUMMARY
+20:55:01 INFO  Run:                          0
+20:55:01 INFO  Previously run:               4
+20:55:01 INFO  Filtered out:                 0
+20:55:01 INFO  -------------------------------
+20:55:01 INFO  Total change sets:            4
+20:55:01 INFO  Update summary generated
+20:55:01 INFO  Command execution complete
+20:55:01 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20:55:02 INFO  Exposing 1 endpoint beneath base path '/actuator'
+20:55:02 INFO  Tomcat started on port 9091 (http) with context path '/'
+20:55:02 INFO  Started ClienteServiceApplication in 2.197 seconds (process running for 2885.615)
+20:55:02 INFO  Condition evaluation unchanged

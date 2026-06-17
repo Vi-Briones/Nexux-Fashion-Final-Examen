@@ -33,71 +33,54 @@ public class CompraService {
     }
 
     public Compra guardar(Compra compra) {
-
         logger.info("Iniciando proceso de guardado de compra: idCliente={}, idProducto={}",
                 compra.getIdCliente(), compra.getDetalles().get(0).getIdProducto());
-
         Boolean existeCliente;
         Boolean existeProducto;
-
         try {
             logger.debug("Validando existencia de cliente id={}", compra.getIdCliente());
-
             existeCliente = webClient.get()
                     .uri(String.format(clientePath, compra.getIdCliente()))
                     .retrieve()
                     .bodyToMono(Boolean.class)
                     .block();
-
             logger.debug("Respuesta existencia cliente: {}", existeCliente);
-
         } catch (Exception e) {
             logger.error("Error al validar cliente id={}", compra.getIdCliente(), e);
             throw new BadRequestException("Error al validar cliente");
         }
-
         try {
             Long idProducto = compra.getDetalles().get(0).getIdProducto();
             logger.debug("Validando existencia de producto id={}", idProducto);
-            
             existeProducto = webClient.get()
                     .uri(String.format(productoPath, idProducto))
                     .retrieve()
                     .bodyToMono(Boolean.class)
                     .block();
-
             logger.debug("Respuesta existencia producto: {}", existeProducto);
-
         } catch (Exception e) {
             logger.error("Error al validar producto id={}", compra.getDetalles().get(0).getIdProducto(), e);
             throw new BadRequestException("Error al validar producto");
         }
-
         // Validaciones de negocio
         if (existeCliente == null) {
             logger.warn("Respuesta nula al validar cliente id={}", compra.getIdCliente());
             throw new BadRequestException("No se pudo validar la existencia del cliente");
         }
-
         if (Boolean.FALSE.equals(existeCliente)) {
             logger.warn("Cliente no existe id={}", compra.getIdCliente());
             throw new ResourceNotFoundException("Cliente no existe");
         }
-
         if (existeProducto == null) {
             logger.warn("Respuesta nula al validar producto id={}", compra.getDetalles().get(0).getIdProducto());
             throw new BadRequestException("No se pudo validar la existencia del producto");
         }
-
         if (Boolean.FALSE.equals(existeProducto)) {
             logger.warn("Producto no existe id={}", compra.getDetalles().get(0).getIdProducto());
             throw new ResourceNotFoundException("Producto no existe");
         }
-
         Compra compraGuardada = compraRepository.save(compra);
-
         logger.info("Compra guardada exitosamente con id={}", compraGuardada.getId());
-
         return compraGuardada;
     }
 
