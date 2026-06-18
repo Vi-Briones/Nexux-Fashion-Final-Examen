@@ -3,6 +3,9 @@ package com.Nexus_Fashion.venta_service.service;
 import com.Nexus_Fashion.venta_service.dto.VentaDTO;
 import com.Nexus_Fashion.venta_service.model.Venta;
 import com.Nexus_Fashion.venta_service.repository.VentaRepository;
+
+
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,35 +80,8 @@ public class VentaService {
         return VentaDTO.fromModel(venta);
     }
 
-    public boolean existePorId(Long id) {
-        logger.info("Servicio Ventas: Validando si existe la transacción ID={} en el sistema", id);
-        
-        boolean existe = ventaRepository.existsById(id);
-        if (existe) {
-            logger.info("Servicio Ventas: La transacción ID={} está confirmada en BD", id);
-        } else {
-            logger.warn("Servicio Ventas - ADVERTENCIA: El ID de transacción={} es inexistente", id);
-        }
-        return existe;
-    }
 
-    public List<VentaDTO> listarPorCliente(Long idCliente) {
-        logger.info("Servicio Ventas: Buscando historial de compras asociadas al Cliente ID={}", idCliente);
-        
-        List<VentaDTO> listaPorCliente = ventaRepository.findByIdCliente(idCliente).stream()
-                .map(VentaDTO::fromModel)
-                .collect(Collectors.toList());
-                
-        logger.info("Servicio Ventas: Búsqueda finalizada. Se encontraron {} ventas para el Cliente ID={}", listaPorCliente.size(), idCliente);
-        return listaPorCliente;
-    }
-
-    public long totalVentasPorCliente(Long idCliente) {
-        logger.info("Servicio Ventas: Contando total de ventas para Cliente ID={}", idCliente);
-        long total = ventaRepository.countByIdCliente(idCliente);
-        logger.info("Servicio Ventas: Cliente ID={} tiene {} ventas", idCliente, total);
-        return total;
-    }
+    
 
     public VentaDTO actualizar(Long id, VentaDTO ventaActualizada) {
         logger.info("Servicio Ventas: Actualizando venta con ID={}", id);

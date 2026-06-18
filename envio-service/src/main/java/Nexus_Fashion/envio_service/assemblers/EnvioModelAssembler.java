@@ -17,7 +17,7 @@ public class EnvioModelAssembler implements RepresentationModelAssembler<Envio, 
         EntityModel<EnvioDTO> model = EntityModel.of(dto);
         
         model.add(linkTo(methodOn(EnvioController.class).listarTodosLosEnvios()).withRel("todos-los-envios"));
-        model.add(linkTo(methodOn(EnvioController.class).obtenerEnvioPorId(envio.getId())).withRel("verificar-existencia"));
+        model.add(linkTo(methodOn(EnvioController.class).obtenerEnvioPorId(dto.getIdCompra())).withRel("verificar-existencia"));
         return model;
 }
 }

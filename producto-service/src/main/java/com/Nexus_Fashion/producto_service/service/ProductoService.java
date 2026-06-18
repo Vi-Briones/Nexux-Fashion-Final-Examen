@@ -45,19 +45,6 @@ public class ProductoService {
         return lista;
     }
 
-    public boolean existePorId(Long id) {
-        logger.info("Servicio Producto: Evaluando existencia en el inventario para el ID={}", id);
-        
-        boolean existe = productoRepository.existsById(id);
-        
-        if (existe) {
-            logger.info("Servicio Producto: Verificación exitosa. El ID={} SÍ existe en catálogo.", id);
-        } else {
-            logger.warn("Servicio Producto - ADVERTENCIA: El ID={} NO corresponde a ningún producto del inventario.", id);
-        }
-        
-        return existe;
-    }
 
     public Producto buscarPorId(Long id) {
         logger.info("Servicio Producto: Buscando producto con ID={}", id);
