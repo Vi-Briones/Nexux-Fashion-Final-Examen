@@ -20,7 +20,6 @@ public class CompraModelAssembler implements RepresentationModelAssembler<Compra
 
         model.add(linkTo(methodOn(CompraController.class).obtenerCompra(compra.getId())).withSelfRel());
         model.add(linkTo(methodOn(CompraController.class).listarCompras()).withRel("todas-las-compras"));
-        model.add(linkTo(methodOn(CompraController.class).listarComprasPorCliente(dto.getIdCliente())).withRel("compras-del-cliente"));
         
         return model;}
     }

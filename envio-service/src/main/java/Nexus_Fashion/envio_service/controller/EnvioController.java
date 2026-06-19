@@ -1,21 +1,12 @@
 package Nexus_Fashion.envio_service.controller;
 
 import java.util.stream.Collectors;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-// --- IMPORTACIONES DE HATEOAS CRÍTICAS ---
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-// ------------------------------------------
-
-import Nexus_Fashion.envio_service.assemblers.EnvioModelAssembler;
+import java.util.List;
 import Nexus_Fashion.envio_service.dto.EnvioDTO;
 import Nexus_Fashion.envio_service.model.Envio;
 import Nexus_Fashion.envio_service.service.EnvioService;
@@ -26,12 +17,9 @@ public class EnvioController {
 
     private static final Logger logger = LoggerFactory.getLogger(EnvioController.class);
     private final EnvioService envioService;
-    private final EnvioModelAssembler assembler; // Inyectamos el ensamblador
 
-    // Constructor actualizado con ambas dependencias
-    public EnvioController(EnvioService envioService, EnvioModelAssembler assembler) {
+    public EnvioController(EnvioService envioService) {
         this.envioService = envioService;
-        this.assembler = assembler;
     }
 
     @PostMapping
@@ -46,27 +34,21 @@ public class EnvioController {
         }
     }
 
-    // --- MODIFICADO CON HATEOAS: Listar todos ---
     @GetMapping
-    public ResponseEntity<CollectionModel<EntityModel<EnvioDTO>>> listarTodosLosEnvios() {
+    public ResponseEntity<List<EnvioDTO>> listarTodosLosEnvios() {
         logger.info("GET /envios - Solicitando lista completa de despachos");
         
         List<Envio> envios = envioService.obtenerTodos();
-        List<EntityModel<EnvioDTO>> dtosConLinks = envios.stream()
-                .map(assembler::toModel)
+        List<EnvioDTO> dtos = envios.stream()
+                .map(EnvioDTO::fromModel)
                 .collect(Collectors.toList());
                 
-        logger.info("GET /envios - Se encontraron {} registros de envíos", dtosConLinks.size());
-        
-        CollectionModel<EntityModel<EnvioDTO>> modeloFinal = CollectionModel.of(dtosConLinks,
-                linkTo(methodOn(EnvioController.class).listarTodosLosEnvios()).withSelfRel());
-                
-        return ResponseEntity.ok(modeloFinal);
+        logger.info("GET /envios - Se encontraron {} registros de envíos", dtos.size());
+        return ResponseEntity.ok(dtos);
     }
 
-    // --- MODIFICADO CON HATEOAS: Buscar por ID ---
     @GetMapping("/{id}")
-    public ResponseEntity<EntityModel<EnvioDTO>> obtenerEnvioPorId(@PathVariable Long id) {
+    public ResponseEntity<EnvioDTO> obtenerEnvioPorId(@PathVariable Long id) {
         logger.info("GET /envios/{} - Buscando registro de envío", id);
         
         Envio envio = envioService.buscarPorId(id);
@@ -76,7 +58,7 @@ public class EnvioController {
         }
         
         logger.info("GET /envios/{} - Registro de envío recuperado con éxito", id);
-        return ResponseEntity.ok(assembler.toModel(envio));
+        return ResponseEntity.ok(EnvioDTO.fromModel(envio));
     }
 
     @PutMapping("/{id}")

@@ -4,15 +4,9 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
-import com.Nexus_Fashion.producto_service.assemblers.ProductoModelAssembler;
 import com.Nexus_Fashion.producto_service.dto.ProductoDTO;
 import com.Nexus_Fashion.producto_service.model.Producto;
 import com.Nexus_Fashion.producto_service.service.ProductoService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +20,9 @@ public class ProductoController {
     private static final Logger logger = LoggerFactory.getLogger(ProductoController.class);
 
     private final ProductoService productoService;
-    private final ProductoModelAssembler assembler;
 
-    public ProductoController(ProductoService productoService, ProductoModelAssembler assembler) {
+    public ProductoController(ProductoService productoService) {
         this.productoService = productoService;
-        this.assembler = assembler;
     }
 
     @PostMapping
@@ -44,22 +36,20 @@ public class ProductoController {
     }
 
     @GetMapping
-    public ResponseEntity<CollectionModel<EntityModel<ProductoDTO>>> listarProductos() {
+    public ResponseEntity<List<ProductoDTO>> listarProductos() {
         logger.info("GET /productos - Solicitando catálogo completo de productos");
         
         List<Producto> productos = productoService.listar();
-        List<EntityModel<ProductoDTO>> dtosConLinks = productos.stream()
-                .map(assembler::toModel)
+        List<ProductoDTO> dtos = productos.stream()
+                .map(ProductoDTO::fromModel)
                 .collect(Collectors.toList());
                 
-        logger.info("GET /productos - Catálogo enviado. Total productos: {}", dtosConLinks.size());
-        CollectionModel<EntityModel<ProductoDTO>> modeloFinal = CollectionModel.of(dtosConLinks,
-                linkTo(methodOn(ProductoController.class).listarProductos()).withSelfRel());
-        return ResponseEntity.ok(modeloFinal);
+        logger.info("GET /productos - Catálogo enviado. Total productos: {}", dtos.size());
+        return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EntityModel<ProductoDTO>> obtenerProducto(@PathVariable Long id) {
+    public ResponseEntity<ProductoDTO> obtenerProducto(@PathVariable Long id) {
         logger.info("GET /productos/{} - Buscando producto por ID", id);
         
         Producto producto = productoService.buscarPorId(id);
@@ -69,7 +59,7 @@ public class ProductoController {
         }
         
         logger.info("GET /productos/{} - Producto recuperado exitosamente", id);
-        return ResponseEntity.ok(assembler.toModel(producto));
+        return ResponseEntity.ok(ProductoDTO.fromModel(producto));
     }
 
     @PutMapping("/{id}")
@@ -99,6 +89,4 @@ public class ProductoController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    
 }

@@ -1,22 +1,16 @@
 package com.Nexus_Fashion.compra_service.controller;
 
-import java.util.stream.Collectors;
-import java.util.List;
-
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
-import com.Nexus_Fashion.compra_service.assemblers.*;
+import org.springframework.web.bind.annotation.*;
 import com.Nexus_Fashion.compra_service.dto.CompraDTO;
 import com.Nexus_Fashion.compra_service.model.Compra;
 import com.Nexus_Fashion.compra_service.service.CompraService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/compras")
@@ -25,17 +19,13 @@ public class CompraController {
     private static final Logger logger = LoggerFactory.getLogger(CompraController.class);
 
     private final CompraService compraService;
-    private final CompraModelAssembler assembler;
-    
 
-    public CompraController(CompraService compraService, CompraModelAssembler assembler) {
+    public CompraController(CompraService compraService) {
         this.compraService = compraService;
-        this.assembler = assembler;
     }
 
     @PostMapping
     public ResponseEntity<CompraDTO> crearCompra(@RequestBody CompraDTO compraDto) {
-
         logger.info("POST /compras - idCliente={}, idProducto={}",
                 compraDto.getIdCliente(), compraDto.getIdProducto());
 
@@ -47,24 +37,22 @@ public class CompraController {
     }
 
     @GetMapping
-    public ResponseEntity<CollectionModel<EntityModel<CompraDTO>>> listarCompras() {
+    public ResponseEntity<List<CompraDTO>> listarCompras() {
         logger.info("GET /compras");
 
         List<Compra> compras = compraService.listar();
 
         logger.debug("Cantidad de compras obtenidas: {}", compras.size());
 
-        List<EntityModel<CompraDTO>> dtosConLinks = compras.stream()
-                .map(assembler::toModel)
+        List<CompraDTO> dtos = compras.stream()
+                .map(CompraDTO::fromModel)
                 .collect(Collectors.toList());
-        logger.info("GET /compras - Se retornaron {} compras exitosamente", dtosConLinks.size());
-        CollectionModel<EntityModel<CompraDTO>> modeloFinal = CollectionModel.of(dtosConLinks,
-                linkTo(methodOn(CompraController.class).listarCompras()).withSelfRel());
-        return ResponseEntity.ok(modeloFinal);
+        logger.info("GET /compras - Se retornaron {} compras exitosamente", dtos.size());
+        return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EntityModel<CompraDTO>> obtenerCompra(@PathVariable Long id) {
+    public ResponseEntity<CompraDTO> obtenerCompra(@PathVariable Long id) {
         logger.info("GET /compras/{} - Buscando compra por ID", id);
         
         Compra compra = compraService.buscarPorId(id);
@@ -74,7 +62,7 @@ public class CompraController {
         }
         
         logger.info("GET /compras/{} - Compra recuperada exitosamente", id);
-        return ResponseEntity.ok(assembler.toModel(compra));
+        return ResponseEntity.ok(CompraDTO.fromModel(compra));
     }
     
     @GetMapping("/{id}/exists")
@@ -134,18 +122,12 @@ public class CompraController {
     }
 
     @GetMapping("/cliente/{idCliente}/total")
-    public ResponseEntity<EntityModel<Long>> totalComprasPorCliente(@PathVariable Long idCliente) {
+    public ResponseEntity<Long> totalComprasPorCliente(@PathVariable Long idCliente) {
         logger.info("GET /compras/cliente/{}/total - Calculando total de compras", idCliente);
         
         long total = compraService.totalComprasPorCliente(idCliente);
-        logger.info("GET /compras/cliente/{}/total - Total: {}", idCliente, total);
         
-        EntityModel<Long> modeloTotal = EntityModel.of(total,
-                linkTo(methodOn(CompraController.class).totalComprasPorCliente(idCliente)).withSelfRel(),
-                linkTo(methodOn(CompraController.class).listarComprasPorCliente(idCliente)).withRel("compras-del-cliente"));
-                
-        return ResponseEntity.ok(modeloTotal);
+        logger.info("GET /compras/cliente/{}/total - Total: {}", idCliente, total);
+        return ResponseEntity.ok(total);
     }
-
-    
 }
