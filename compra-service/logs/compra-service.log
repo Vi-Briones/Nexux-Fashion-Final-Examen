@@ -2,3 +2,55 @@
 00:11:23 INFO  No active profile set, falling back to 1 default profile: "default"
 00:11:23 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
 00:11:23 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+00:11:24 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:11:24 INFO  Finished Spring Data repository scanning in 137 ms. Found 1 JPA repository interface.
+00:11:25 INFO  Tomcat initialized with port 9092 (http)
+00:11:25 INFO  Starting service [Tomcat]
+00:11:25 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+00:11:25 INFO  Root WebApplicationContext: initialization completed in 1888 ms
+00:11:25 INFO  HikariPool-1 - Starting...
+00:11:25 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32220c41
+00:11:25 INFO  HikariPool-1 - Start completed.
+00:11:28 INFO  Reading from bd_compra.databasechangelog
+00:11:28 INFO  Database is up to date, no changesets to execute
+00:11:28 INFO  Reading from bd_compra.databasechangelog
+00:11:28 INFO  UPDATE SUMMARY
+00:11:28 INFO  Run:                          0
+00:11:28 INFO  Previously run:               3
+00:11:28 INFO  Filtered out:                 0
+00:11:28 INFO  -------------------------------
+00:11:28 INFO  Total change sets:            3
+00:11:28 INFO  Update summary generated
+00:11:28 INFO  Command execution complete
+00:11:28 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+00:11:28 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
+00:11:29 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+00:11:29 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+00:11:29 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_compra?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_compra/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+00:11:30 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+00:11:30 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:11:30 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+00:11:30 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:11:31 INFO  Tomcat started on port 9092 (http) with context path '/'
+00:11:31 INFO  Started CompraServiceApplication in 8.462 seconds (process running for 9.038)
+00:15:05 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+00:15:05 INFO  Initializing Servlet 'dispatcherServlet'
+00:15:05 INFO  Completed initialization in 2 ms
+00:15:05 INFO  GET /compras
+00:15:05 INFO  Listando todas las compras
+00:15:06 INFO  GET /compras - Se retornaron 10 compras exitosamente
+00:16:41 INFO  GET /compras/2 - Buscando compra por ID
+00:16:41 INFO  Buscando compra con ID=2
+00:16:41 INFO  Compra encontrada con ID=2
+00:16:41 INFO  GET /compras/2 - Compra recuperada exitosamente

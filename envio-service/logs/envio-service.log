@@ -1,2 +1,69 @@
 00:12:38 INFO  Starting EnvioServiceApplication using Java 21.0.10 with PID 13840 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\envio-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\envio-service)
 00:12:38 INFO  No active profile set, falling back to 1 default profile: "default"
+00:12:39 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:12:39 INFO  Finished Spring Data repository scanning in 134 ms. Found 1 JPA repository interface.
+00:12:40 INFO  Tomcat initialized with port 9095 (http)
+00:12:40 INFO  Starting service [Tomcat]
+00:12:40 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+00:12:40 INFO  Root WebApplicationContext: initialization completed in 1780 ms
+00:12:40 INFO  HikariPool-1 - Starting...
+00:12:41 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f5ce33e
+00:12:41 INFO  HikariPool-1 - Start completed.
+00:12:43 INFO  Creating database changelog table with name: bd_envio.databasechangelog
+00:12:44 INFO  Reading from bd_envio.databasechangelog
+00:12:44 INFO  Creating snapshot
+00:12:44 INFO  Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
+00:12:44 INFO  Successfully acquired change log lock
+00:12:44 INFO  Using deploymentId: 1755960518
+00:12:44 INFO  Reading from bd_envio.databasechangelog
+00:12:44 INFO  Running Changeset: db/changelog/db.changelog.sql::1::luisana
+00:12:44 INFO  Custom SQL executed
+00:12:44 INFO  ChangeSet db/changelog/db.changelog.sql::1::luisana ran successfully in 26ms
+00:12:44 INFO  Running Changeset: db/changelog/db.changelog.sql::2::luisana
+00:12:44 INFO  Custom SQL executed
+00:12:44 INFO  ChangeSet db/changelog/db.changelog.sql::2::luisana ran successfully in 21ms
+00:12:44 INFO  Running Changeset: db/changelog/db.changelog.sql::3::luisana
+00:12:44 INFO  Custom SQL executed
+00:12:44 INFO  ChangeSet db/changelog/db.changelog.sql::3::luisana ran successfully in 14ms
+00:12:44 INFO  UPDATE SUMMARY
+00:12:44 INFO  Run:                          3
+00:12:44 INFO  Previously run:               0
+00:12:44 INFO  Filtered out:                 0
+00:12:44 INFO  -------------------------------
+00:12:44 INFO  Total change sets:            3
+00:12:44 INFO  Update summary generated
+00:12:44 INFO  Update command completed successfully.
+00:12:44 INFO  Liquibase: Update has been successful. Rows affected: 20
+00:12:44 INFO  Successfully released change log lock
+00:12:44 INFO  Command execution complete
+00:12:44 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+00:12:44 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
+00:12:45 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+00:12:45 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+00:12:45 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_envio?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_envio/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+00:12:46 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+00:12:46 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:12:46 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+00:12:46 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:12:47 INFO  Tomcat started on port 9095 (http) with context path '/'
+00:12:47 INFO  Started EnvioServiceApplication in 9.249 seconds (process running for 9.749)
+00:15:14 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+00:15:14 INFO  Initializing Servlet 'dispatcherServlet'
+00:15:14 INFO  Completed initialization in 1 ms
+00:15:14 INFO  GET /envios - Solicitando lista completa de despachos
+00:15:14 INFO  Servicio Envíos: Buscando todos los registros en la base de datos
+00:15:15 INFO  GET /envios - Se encontraron 10 registros de envíos
+00:16:51 INFO  GET /envios/5 - Buscando registro de envío
+00:16:51 INFO  Servicio Envíos: Buscando registro con ID=5
+00:16:51 INFO  GET /envios/5 - Registro de envío recuperado con éxito

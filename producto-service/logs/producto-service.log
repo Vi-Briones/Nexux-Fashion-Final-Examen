@@ -2,3 +2,75 @@
 00:13:52 INFO  No active profile set, falling back to 1 default profile: "default"
 00:13:52 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
 00:13:52 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+00:13:53 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:13:53 INFO  Finished Spring Data repository scanning in 130 ms. Found 1 JPA repository interface.
+00:13:54 INFO  Tomcat initialized with port 9093 (http)
+00:13:54 INFO  Starting service [Tomcat]
+00:13:54 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+00:13:54 INFO  Root WebApplicationContext: initialization completed in 1861 ms
+00:13:54 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+00:13:54 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
+00:13:54 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+00:13:54 INFO  HikariPool-1 - Starting...
+00:13:55 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f6325d0
+00:13:55 INFO  HikariPool-1 - Start completed.
+00:13:55 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+00:13:55 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_producto?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_producto/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+00:13:56 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+00:13:56 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:13:56 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+00:13:58 INFO  Creating database changelog table with name: bd_producto.databasechangelog
+00:13:59 INFO  Reading from bd_producto.databasechangelog
+00:13:59 INFO  Creating snapshot
+00:13:59 INFO  Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
+00:13:59 INFO  Successfully acquired change log lock
+00:13:59 INFO  Using deploymentId: 1756036906
+00:13:59 INFO  Reading from bd_producto.databasechangelog
+00:13:59 INFO  Running Changeset: db/changelog/db.changelog.sql::1::autor
+00:13:59 INFO  Custom SQL executed
+00:13:59 INFO  ChangeSet db/changelog/db.changelog.sql::1::autor ran successfully in 32ms
+00:13:59 INFO  Running Changeset: db/changelog/db.changelog.sql::2::autor
+00:13:59 INFO  Custom SQL executed
+00:13:59 INFO  ChangeSet db/changelog/db.changelog.sql::2::autor ran successfully in 10ms
+00:13:59 INFO  Running Changeset: db/changelog/db.changelog.sql::3::autor
+00:13:59 INFO  Custom SQL executed
+00:13:59 INFO  ChangeSet db/changelog/db.changelog.sql::3::autor ran successfully in 24ms
+00:13:59 INFO  Running Changeset: db/changelog/db.changelog.sql::4::autor
+00:13:59 INFO  Custom SQL executed
+00:13:59 INFO  ChangeSet db/changelog/db.changelog.sql::4::autor ran successfully in 8ms
+00:13:59 INFO  UPDATE SUMMARY
+00:13:59 INFO  Run:                          4
+00:13:59 INFO  Previously run:               0
+00:13:59 INFO  Filtered out:                 0
+00:13:59 INFO  -------------------------------
+00:13:59 INFO  Total change sets:            4
+00:13:59 INFO  Update summary generated
+00:13:59 INFO  Update command completed successfully.
+00:13:59 INFO  Liquibase: Update has been successful. Rows affected: 13
+00:13:59 INFO  Successfully released change log lock
+00:13:59 INFO  Command execution complete
+00:13:59 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:14:00 INFO  Tomcat started on port 9093 (http) with context path '/'
+00:14:00 INFO  Started ProductoServiceApplication in 8.466 seconds (process running for 9.052)
+00:15:45 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+00:15:45 INFO  Initializing Servlet 'dispatcherServlet'
+00:15:45 INFO  Completed initialization in 1 ms
+00:15:46 INFO  GET /productos - Solicitando catálogo completo de productos
+00:15:46 INFO  Servicio Producto: Consultando todos los productos del inventario en la BD
+00:15:46 INFO  Servicio Producto: Consulta finalizada. Total de productos en catálogo: 9
+00:15:46 INFO  GET /productos - Catálogo enviado. Total productos: 9
+00:17:14 INFO  GET /productos/1 - Buscando producto por ID
+00:17:14 INFO  Servicio Producto: Buscando producto con ID=1
+00:17:14 INFO  Servicio Producto: Producto encontrado con ID=1
+00:17:14 INFO  GET /productos/1 - Producto recuperado exitosamente

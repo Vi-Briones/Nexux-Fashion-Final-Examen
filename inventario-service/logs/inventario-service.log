@@ -1,2 +1,47 @@
 00:13:22 INFO  Starting InventarioServiceApplication using Java 21.0.10 with PID 23380 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\inventario-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\inventario-service)
 00:13:22 INFO  No active profile set, falling back to 1 default profile: "default"
+00:13:23 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:13:23 INFO  Finished Spring Data repository scanning in 46 ms. Found 1 JPA repository interface.
+00:13:23 INFO  Tomcat initialized with port 9096 (http)
+00:13:23 INFO  Starting service [Tomcat]
+00:13:23 INFO  Starting Servlet engine: [Apache Tomcat/11.0.22]
+00:13:23 INFO  Root WebApplicationContext: initialization completed in 1489 ms
+00:13:23 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+00:13:23 INFO  HHH000001: Hibernate ORM core version 7.4.1.Final
+00:13:24 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+00:13:24 INFO  HikariPool-1 - Starting...
+00:13:24 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@517bdce0
+00:13:24 INFO  HikariPool-1 - Start completed.
+00:13:25 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+00:13:25 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_inventario?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_inventario/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+00:13:25 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+00:13:25 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:13:26 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+00:13:26 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:13:26 INFO  Tomcat started on port 9096 (http) with context path '/'
+00:13:26 INFO  Started InventarioServiceApplication in 5.262 seconds (process running for 5.687)
+00:15:22 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
+00:15:22 INFO  Initializing Servlet 'dispatcherServlet'
+00:15:22 INFO  Completed initialization in 2 ms
+00:15:22 INFO  GET /inventarios - Listando inventarios
+00:15:22 INFO  Service: Consultando el stock global de la bodega en Nexus Fashion
+00:15:22 INFO  Total inventarios listados: 20
+00:15:30 INFO  V2 GET /inventarios - Listando inventarios con soporte HATEOAS
+00:15:30 INFO  Service: Consultando el stock global de la bodega en Nexus Fashion
+00:16:59 INFO  GET /inventarios/5 - Obteniendo inventario
+00:16:59 INFO  Service: Buscando registro de inventario con ID: 5
+00:16:59 INFO  Inventario obtenido id=5
+00:17:06 INFO  V2 GET /inventarios/2 - Obteniendo inventario específico con soporte HATEOAS
+00:17:06 INFO  Service: Buscando registro de inventario con ID: 2
+00:17:06 INFO  Service: Buscando registro de inventario con ID: 2
