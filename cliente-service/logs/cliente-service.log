@@ -1,21 +1,21 @@
-00:10:54 INFO  Starting ClienteServiceApplication using Java 21.0.10 with PID 21792 (C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service\target\classes started by vicen in C:\Nexus-fashion - final\Nexux-Fashion-Final-Examen\cliente-service)
-00:10:54 INFO  No active profile set, falling back to 1 default profile: "default"
-00:10:54 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-00:10:54 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-00:10:55 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-00:10:55 INFO  Finished Spring Data repository scanning in 133 ms. Found 1 JPA repository interface.
-00:10:56 INFO  Tomcat initialized with port 9091 (http)
-00:10:56 INFO  Starting service [Tomcat]
-00:10:56 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
-00:10:56 INFO  Root WebApplicationContext: initialization completed in 2113 ms
-00:10:56 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
-00:10:56 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
-00:10:57 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
-00:10:57 INFO  HikariPool-1 - Starting...
-00:10:57 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@267c2d38
-00:10:57 INFO  HikariPool-1 - Start completed.
-00:10:57 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
-00:10:57 INFO  HHH10001005: Database info:
+00:02:37 INFO  Starting ClienteServiceApplication using Java 21.0.10 with PID 2008 (C:\Nexux-Fashion-Final-Examen\cliente-service\target\classes started by luisa in C:\Nexux-Fashion-Final-Examen\cliente-service)
+00:02:37 INFO  No active profile set, falling back to 1 default profile: "default"
+00:02:37 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+00:02:37 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+00:02:40 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:02:41 INFO  Finished Spring Data repository scanning in 271 ms. Found 1 JPA repository interface.
+00:02:42 INFO  Tomcat initialized with port 9091 (http)
+00:02:42 INFO  Starting service [Tomcat]
+00:02:42 INFO  Starting Servlet engine: [Apache Tomcat/11.0.21]
+00:02:43 INFO  Root WebApplicationContext: initialization completed in 5113 ms
+00:02:43 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+00:02:43 INFO  HHH000001: Hibernate ORM core version 7.2.12.Final
+00:02:45 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+00:02:45 INFO  HikariPool-1 - Starting...
+00:02:46 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@59b56fa1
+00:02:46 INFO  HikariPool-1 - Start completed.
+00:02:46 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+00:02:46 INFO  HHH10001005: Database info:
 	Database JDBC URL [jdbc:mysql://localhost:3306/bd_cliente?createDatabaseIfNotExist=true]
 	Database driver: MySQL Connector/J
 	Database dialect: MySQLDialect
@@ -27,32 +27,45 @@
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-00:10:58 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-00:10:58 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
-00:10:58 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
-00:11:01 INFO  Reading from bd_cliente.databasechangelog
-00:11:01 INFO  Database is up to date, no changesets to execute
-00:11:01 INFO  Reading from bd_cliente.databasechangelog
-00:11:01 INFO  UPDATE SUMMARY
-00:11:01 INFO  Run:                          0
-00:11:01 INFO  Previously run:               4
-00:11:01 INFO  Filtered out:                 0
-00:11:01 INFO  -------------------------------
-00:11:01 INFO  Total change sets:            4
-00:11:01 INFO  Update summary generated
-00:11:01 INFO  Command execution complete
-00:11:01 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-00:11:02 INFO  Exposing 1 endpoint beneath base path '/actuator'
-00:11:02 INFO  Tomcat started on port 9091 (http) with context path '/'
-00:11:02 INFO  Started ClienteServiceApplication in 9.021 seconds (process running for 9.666)
-00:14:57 INFO  Initializing Spring DispatcherServlet 'dispatcherServlet'
-00:14:57 INFO  Initializing Servlet 'dispatcherServlet'
-00:14:57 INFO  Completed initialization in 2 ms
-00:14:57 INFO  GET /clientes - Solicitando la lista completa de clientes
-00:14:57 INFO  Servicio Cliente: Solicitando consulta de todos los clientes a la base de datos
-00:14:57 INFO  Servicio Cliente: Consulta finalizada. Se recuperaron 11 registros.
-00:14:57 INFO  GET /clientes - Se retornaron 11 clientes exitosamente
-00:16:30 INFO  GET /clientes/1 - Buscando cliente por ID
-00:16:30 INFO  Servicio Cliente: Buscando cliente con ID=1
-00:16:30 INFO  Servicio Cliente: Cliente encontrado con ID=1
-00:16:30 INFO  GET /clientes/1 - Cliente recuperado exitosamente
+00:02:48 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+00:02:48 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:02:48 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+00:02:52 INFO  Creating database changelog table with name: bd_cliente.databasechangelog
+00:02:52 INFO  Reading from bd_cliente.databasechangelog
+00:02:52 INFO  Creating snapshot
+00:02:52 INFO  Name 'PK_DATABASECHANGELOGLOCK' ignored for PRIMARY key.
+00:02:52 INFO  Successfully acquired change log lock
+00:02:52 INFO  Using deploymentId: 1928169211
+00:02:52 INFO  Reading from bd_cliente.databasechangelog
+00:02:52 INFO  Running Changeset: db/changelog/db.changelog.sql::1::autor
+00:02:52 INFO  Custom SQL executed
+00:02:52 INFO  ChangeSet db/changelog/db.changelog.sql::1::autor ran successfully in 73ms
+00:02:52 INFO  Running Changeset: db/changelog/db.changelog.sql::2::autor
+00:02:52 INFO  Custom SQL executed
+00:02:52 INFO  ChangeSet db/changelog/db.changelog.sql::2::autor ran successfully in 25ms
+00:02:52 INFO  Running Changeset: db/changelog/db.changelog.sql::3::autor
+00:02:52 INFO  Custom SQL executed
+00:02:52 INFO  ChangeSet db/changelog/db.changelog.sql::3::autor ran successfully in 66ms
+00:02:52 INFO  Running Changeset: db/changelog/db.changelog.sql::4::autor
+00:02:53 INFO  Custom SQL executed
+00:02:53 INFO  ChangeSet db/changelog/db.changelog.sql::4::autor ran successfully in 34ms
+00:02:53 INFO  UPDATE SUMMARY
+00:02:53 INFO  Run:                          4
+00:02:53 INFO  Previously run:               0
+00:02:53 INFO  Filtered out:                 0
+00:02:53 INFO  -------------------------------
+00:02:53 INFO  Total change sets:            4
+00:02:53 INFO  Update summary generated
+00:02:53 INFO  Update command completed successfully.
+00:02:53 INFO  Liquibase: Update has been successful. Rows affected: 14
+00:02:53 INFO  Successfully released change log lock
+00:02:53 INFO  Command execution complete
+00:02:53 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:02:55 INFO  Exposing 1 endpoint beneath base path '/actuator'
+00:02:55 INFO  Tomcat started on port 9091 (http) with context path '/'
+00:02:55 INFO  Started ClienteServiceApplication in 19.692 seconds (process running for 21.709)
+00:13:12 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+00:13:12 INFO  Graceful shutdown complete
+00:13:12 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+00:13:12 INFO  HikariPool-1 - Shutdown initiated...
+00:13:12 INFO  HikariPool-1 - Shutdown completed.
