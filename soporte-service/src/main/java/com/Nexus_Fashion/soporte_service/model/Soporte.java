@@ -32,8 +32,13 @@ public class Soporte {
     @Column(name = "prioridad", nullable = false, length = 20)
     private String prioridad;
 
-    @Column(name = "fecha_creacion", nullable = false)
+    @Column(name = "fecha_creacion", updatable = false)
     private LocalDateTime fechaCreacion;
+
+    @PrePersist
+    protected void onCreate() {
+        this.fechaCreacion = LocalDateTime.now();
+    }
 
     @Column(name = "fecha_actualizacion")
     private LocalDateTime fechaActualizacion;

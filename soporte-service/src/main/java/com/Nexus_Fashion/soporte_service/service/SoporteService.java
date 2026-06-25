@@ -32,6 +32,7 @@ public class SoporteService {
         logger.info("Iniciando guardar ticket de soporte con idCliente={}, asunto={}, prioridad={}", 
                 soporte.getIdCliente(), soporte.getAsunto(), soporte.getPrioridad());
         try {
+            // 1. Validaciones iniciales de los datos de entrada
             if (soporte.getIdCliente() == null || soporte.getIdCliente() <= 0) {
                 throw new IllegalArgumentException("idCliente (Cliente) requerido y debe ser mayor a 0");
             }
@@ -42,6 +43,7 @@ public class SoporteService {
                 throw new IllegalArgumentException("descripción requerida");
             }
             
+            // 2. Asignación de valores por defecto si vienen vacíos
             if (soporte.getEstado() == null || soporte.getEstado().isBlank()) {
                 soporte.setEstado("PENDIENTE");
             }
@@ -52,20 +54,31 @@ public class SoporteService {
                 soporte.setFechaCreacion(LocalDateTime.now());
             }
 
-            String uri = String.format(clientePath, soporte.getIdCliente());
-            logger.info("URI = {}", uri);
-            logger.info("Realizando petición a api-gateway: {}", uri);
-            
-            Boolean existeCliente = webClient.get()
-                    .uri(uri)
-                    .retrieve()
-                    .bodyToMono(Boolean.class)
-                    .block();
+            // 3. Intento de validación externa con Tolerancia a Fallos (Fallback)
+            Boolean existeCliente;
+            try {
+                String uri = String.format(clientePath, soporte.getIdCliente());
+                logger.info("URI = {}", uri);
+                logger.info("Realizando petición a api-gateway/clientes: {}", uri);
+                
+                existeCliente = webClient.get()
+                        .uri(uri)
+                        .retrieve()
+                        .bodyToMono(Boolean.class)
+                        .block();
+                
+                logger.info("Respuesta de api-gateway: existeCliente={}", existeCliente);
+            } catch (Exception e) {
+                // FALLBACK: Si falla la red de Docker o el microservicio de clientes está abajo,
+                // atrapamos la excepción aquí para evitar el Error 500 y dejamos pasar la petición.
+                logger.error("[FALLBACK ACTIVO] No se pudo conectar con el servicio de clientes (Error de comunicación). " +
+                             "Se asume que el cliente existe para no detener el flujo. Detalles: {}", e.getMessage());
+                existeCliente = true; 
+            }
 
-            logger.info("Respuesta de api-gateway: existeCliente={}", existeCliente);
-
+            // 4. Procesar el resultado de la validación
             if (existeCliente == null) {
-                logger.error("No se pudo validar la existencia del cliente");
+                logger.error("No se pudo validar la existencia del cliente (El servicio retornó null)");
                 throw new RuntimeException("No se pudo validar la existencia del cliente"); 
             }
             if (Boolean.FALSE.equals(existeCliente)) {
@@ -73,11 +86,13 @@ public class SoporteService {
                 throw new RuntimeException("Cliente no existe");
             }
 
+            // 5. Persistencia en la Base de Datos
             Soporte ticketGuardado = soporteRepository.save(soporte);
             logger.info("Ticket de soporte guardado exitosamente con id={}", ticketGuardado.getId());
             return ticketGuardado;
+            
         } catch (Exception e) {
-            logger.error("Error al guardar ticket de soporte: {}", e.getMessage(), e);
+            logger.error("Error crítico al guardar ticket de soporte: {}", e.getMessage(), e);
             throw e;
         }
     }

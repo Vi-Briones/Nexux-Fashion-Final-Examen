@@ -53,3 +53,8 @@ spring:
             uri: http://soporte-service:9099
             predicates:
             - Path=/soportes/**
+
+          - id: recomendaciones-service
+            uri: http://recomendaciones-service:9100
+            predicates:
+            - Path=/recomendaciones/**

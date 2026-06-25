@@ -17,6 +17,9 @@
         - producto-service
         - resena-service
         - venta-service
+        - notificacion-service
+        - soporte-service
+        - recomendaciones-service
         
 
     cliente-service:
@@ -62,8 +65,29 @@
         <<: *common-env
 
     resena-service:
-      build: ./reseña-service
+      build: ./resena-service
       ports:
         - "9097:9097"
+      environment:
+        <<: *common-env
+
+    notificacion-service:
+      build: ./notificacion-service
+      ports:
+        - "9098:9098"
+      environment:
+        <<: *common-env
+
+    soporte-service:
+      build: ./soporte-service
+      ports:
+        - "9099:9099"
+      environment:
+        <<: *common-env
+
+    recomendaciones-service:
+      build: ./recomendaciones-service
+      ports:
+        - "9100:9100"
       environment:
         <<: *common-env

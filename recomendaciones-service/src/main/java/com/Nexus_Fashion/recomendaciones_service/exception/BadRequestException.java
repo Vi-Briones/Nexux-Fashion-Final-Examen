@@ -1,4 +1,4 @@
-package com.example.compra_service.exception;
+package com.Nexus_Fashion.recomendaciones_service.exception;
 
 public class BadRequestException extends RuntimeException {
 

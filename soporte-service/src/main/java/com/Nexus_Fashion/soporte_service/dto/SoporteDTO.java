@@ -46,9 +46,13 @@ public class SoporteDTO {
         soporte.setDescripcion(this.descripcion);
         soporte.setEstado(this.estado);
         soporte.setPrioridad(this.prioridad);
+        if (this.id == null) {
+        soporte.setFechaCreacion(java.time.LocalDateTime.now());
+    } else {
         soporte.setFechaCreacion(this.fechaCreacion);
-        soporte.setFechaActualizacion(this.fechaActualizacion);
-        return soporte;
+    }
+    soporte.setFechaActualizacion(this.fechaActualizacion);
+    return soporte;
     }
 
     public static SoporteDTO fromModel(Soporte soporte) {

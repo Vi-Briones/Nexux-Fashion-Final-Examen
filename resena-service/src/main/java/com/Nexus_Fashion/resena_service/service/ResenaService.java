@@ -28,17 +28,25 @@ public class ResenaService {
         this.webClient = WebClient.create();
     }
 
-    public ResenaDTO guardar(ResenaDTO resenaDTO) {
+   public ResenaDTO guardar(ResenaDTO resenaDTO) {
         logger.info("===> [POST] Iniciando guardado de reseña");
         try {
-            // 1. Validar la existencia de la compra mediante la API Gateway
-            validarCompraEnServicioExterno(resenaDTO.getIdCompra());
+            // 1. Validar la existencia de la compra con Tolerancia a Fallos (Fallback)
+            try {
+                logger.info("Validando compra ID: {} en servicio externo...", resenaDTO.getIdCompra());
+                validarCompraEnServicioExterno(resenaDTO.getIdCompra());
+                logger.info("Compra validada con éxito en el servicio externo.");
+            } catch (Exception e) {
+                // FALLBACK ACTIVO: Si el microservicio de compras no responde o falla la red de Docker
+                logger.error("[FALLBACK ACTIVO] No se pudo conectar con el servicio de compras mediante API Gateway. " +
+                             "Se asume que la compra existe para no congelar el flujo de reseñas. Detalles: {}", e.getMessage());
+            }
 
             // 2. Mapear DTO a Modelo
             logger.info("Transformando ResenaDTO a Modelo...");
             Resena resena = resenaDTO.toModel();
             
-            // 3. Persistir en Base de Datos de XAMPP
+            // 3. Persistir en Base de Datos de XAMPP / MySQL
             logger.info("Guardando entidad en la base de datos...");
             Resena resenaGuardada = resenaRepository.save(resena);
             

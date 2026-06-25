@@ -26,3 +26,11 @@ call .\mvnw clean package -DskipTests
 cd ../venta-service
 call .\mvnw clean package -DskipTests
 
+cd ../notificacion-service
+call .\mvnw clean package -DskipTests
+
+cd ../soporte-service
+call .\mvnw clean package -DskipTests
+
+cd ../recomendaciones-service
+call .\mvnw clean package -DskipTests

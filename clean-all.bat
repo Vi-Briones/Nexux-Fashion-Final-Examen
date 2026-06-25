@@ -19,5 +19,14 @@ call .\mvnw clean
 cd ../venta-service
 call .\mvnw clean
 
-cd ../reseña-service
+cd ../resena-service
+call .\mvnw clean
+
+cd ../notificacion-service
+call .\mvnw clean
+
+cd ../soporte-service
+call .\mvnw clean
+
+cd ../recomendaciones-service
 call .\mvnw clean
