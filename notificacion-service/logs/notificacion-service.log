@@ -1,0 +1,40 @@
+02:12:36 INFO  Starting NotificacionApplication using Java 21.0.10 with PID 16656 (C:\Nexux-Fashion-Final-Examen\notificacion-service\target\classes started by luisa in C:\Nexux-Fashion-Final-Examen\notificacion-service)
+02:12:36 INFO  No active profile set, falling back to 1 default profile: "default"
+02:12:36 INFO  Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+02:12:36 INFO  For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+02:12:39 INFO  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+02:12:39 INFO  Finished Spring Data repository scanning in 89 ms. Found 1 JPA repository interface.
+02:12:41 INFO  Tomcat initialized with port 9098 (http)
+02:12:41 INFO  Starting service [Tomcat]
+02:12:41 INFO  Starting Servlet engine: [Apache Tomcat/11.0.22]
+02:12:41 INFO  Root WebApplicationContext: initialization completed in 4935 ms
+02:12:42 INFO  HHH008540: Processing PersistenceUnitInfo [name: default]
+02:12:42 INFO  HHH000001: Hibernate ORM core version 7.4.1.Final
+02:12:43 INFO  No LoadTimeWeaver setup: ignoring JPA class transformer
+02:12:43 INFO  HikariPool-1 - Starting...
+02:12:44 INFO  HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2e7df4b4
+02:12:44 INFO  HikariPool-1 - Start completed.
+02:12:45 WARN  HHH000511: The 5.5.5 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly.The minimum supported version is 8.0.0. Check the community dialects project for available legacy versions.
+02:12:45 INFO  HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/bd_notificacion?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 5.5.5
+	Default catalog/schema: bd_notificacion/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+02:12:47 INFO  HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+02:12:47 INFO  Initialized JPA EntityManagerFactory for persistence unit 'default'
+02:12:47 INFO  Hibernate is in classpath; If applicable, HQL parser will be used.
+02:12:47 WARN  spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+02:12:50 INFO  Tomcat started on port 9098 (http) with context path '/'
+02:12:50 INFO  Started NotificacionApplication in 14.585 seconds (process running for 16.285)
+02:16:46 INFO  Commencing graceful shutdown. Waiting for active requests to complete
+02:16:46 INFO  Graceful shutdown complete
+02:16:46 INFO  Closing JPA EntityManagerFactory for persistence unit 'default'
+02:16:46 INFO  HikariPool-1 - Shutdown initiated...
+02:16:46 INFO  HikariPool-1 - Shutdown completed.

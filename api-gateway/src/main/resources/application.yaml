@@ -43,3 +43,13 @@ spring:
             uri: http://resena-service:9097
             predicates:
             - Path=/resenas/** 
+
+          - id: notificacion-service
+            uri: http://notificacion-service:9098
+            predicates:
+            - Path=/notificaciones/**
+
+          - id: soporte-service
+            uri: http://soporte-service:9099
+            predicates:
+            - Path=/soportes/**
