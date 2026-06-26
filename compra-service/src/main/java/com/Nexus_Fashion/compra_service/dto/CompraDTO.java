@@ -37,7 +37,7 @@ public class CompraDTO {
     @NotNull(message = "El total es obligatorio")
     @DecimalMin(value = "0.01", message = "El total debe ser mayor a 0")
     private Double total;
-
+    
     public Compra toModel() {
         DetalleCompra detalle = new DetalleCompra();
         detalle.setIdProducto(this.idProducto);
