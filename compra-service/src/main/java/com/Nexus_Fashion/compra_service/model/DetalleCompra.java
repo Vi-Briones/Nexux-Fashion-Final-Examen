@@ -17,9 +17,6 @@ public class DetalleCompra {
     @Column(name = "id_detalle")
     private Long idDetalle;
 
-    @Column(name = "id_compra_ref")  // ✅ mapeo explícito de la FK
-    private Long idCompraRef;
-
     @Column(name = "id_producto", nullable = false)
     private Long idProducto;
 

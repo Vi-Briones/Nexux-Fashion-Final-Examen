@@ -9,6 +9,8 @@ import com.Nexus_Fashion.compra_service.dto.CompraDTO;
 import com.Nexus_Fashion.compra_service.model.Compra;
 import com.Nexus_Fashion.compra_service.service.CompraService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +27,7 @@ public class CompraController {
     }
 
     @PostMapping
-    public ResponseEntity<CompraDTO> crearCompra(@RequestBody CompraDTO compraDto) {
+    public ResponseEntity<CompraDTO> crearCompra(@Valid @RequestBody CompraDTO compraDto) {
         logger.info("POST /compras - idCliente={}, idProducto={}",
                 compraDto.getIdCliente(), compraDto.getIdProducto());
 
@@ -81,7 +83,7 @@ public class CompraController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CompraDTO> actualizarCompra(@PathVariable Long id, @RequestBody CompraDTO compraDto) {
+    public ResponseEntity<CompraDTO> actualizarCompra(@PathVariable Long id,@Valid @RequestBody CompraDTO compraDto) {
         logger.info("PUT /compras/{} - Iniciando actualización", id);
         
         try {

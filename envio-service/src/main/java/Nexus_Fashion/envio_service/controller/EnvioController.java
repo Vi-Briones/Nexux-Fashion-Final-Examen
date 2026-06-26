@@ -10,6 +10,7 @@ import java.util.List;
 import Nexus_Fashion.envio_service.dto.EnvioDTO;
 import Nexus_Fashion.envio_service.model.Envio;
 import Nexus_Fashion.envio_service.service.EnvioService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/envios")
@@ -23,7 +24,7 @@ public class EnvioController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crearEnvio(@RequestBody EnvioDTO envioDto) {
+    public ResponseEntity<?> crearEnvio(@Valid @RequestBody EnvioDTO envioDto) {
         logger.info("POST /envios - Solicitud de despacho recibida para la compra ID={}", envioDto.getIdCompra());
         try {
             Envio nuevoEnvio = envioService.guardar(envioDto.toModel());
@@ -62,7 +63,7 @@ public class EnvioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EnvioDTO> actualizarEnvio(@PathVariable Long id, @RequestBody EnvioDTO envioDto) {
+    public ResponseEntity<EnvioDTO> actualizarEnvio(@PathVariable Long id,@Valid @RequestBody EnvioDTO envioDto) {
         logger.info("PUT /envios/{} - Iniciando actualización", id);
         
         try {

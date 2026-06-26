@@ -23,30 +23,27 @@ public class ResenaService {
     @Value("${api.compra.exists}")
     private String compraPath;
 
-    public ResenaService(ResenaRepository resenaRepository) {
+    // ✅ CORREGIDO: Spring inyecta el WebClient bean configurado con baseUrl
+    public ResenaService(ResenaRepository resenaRepository, WebClient webClient) {
         this.resenaRepository = resenaRepository;
-        this.webClient = WebClient.create();
+        this.webClient = webClient;
     }
 
-   public ResenaDTO guardar(ResenaDTO resenaDTO) {
+    public ResenaDTO guardar(ResenaDTO resenaDTO) {
         logger.info("===> [POST] Iniciando guardado de reseña");
         try {
-            // 1. Validar la existencia de la compra con Tolerancia a Fallos (Fallback)
             try {
                 logger.info("Validando compra ID: {} en servicio externo...", resenaDTO.getIdCompra());
                 validarCompraEnServicioExterno(resenaDTO.getIdCompra());
                 logger.info("Compra validada con éxito en el servicio externo.");
             } catch (Exception e) {
-                // FALLBACK ACTIVO: Si el microservicio de compras no responde o falla la red de Docker
                 logger.error("[FALLBACK ACTIVO] No se pudo conectar con el servicio de compras mediante API Gateway. " +
                              "Se asume que la compra existe para no congelar el flujo de reseñas. Detalles: {}", e.getMessage());
             }
 
-            // 2. Mapear DTO a Modelo
             logger.info("Transformando ResenaDTO a Modelo...");
             Resena resena = resenaDTO.toModel();
             
-            // 3. Persistir en Base de Datos de XAMPP / MySQL
             logger.info("Guardando entidad en la base de datos...");
             Resena resenaGuardada = resenaRepository.save(resena);
             
@@ -62,21 +59,16 @@ public class ResenaService {
     public ResenaDTO actualizar(Long id, ResenaDTO resenaDTO) {
         logger.info("===> [PUT] Iniciando actualización de reseña ID: {}", id);
         try {
-            // 1. Verificar si la reseña que quieres editar existe en TU base de datos
             Resena existente = resenaRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("La reseña con ID " + id + " no existe en la base de datos"));
 
-            // 2. Validar que el idCompra que viene en el JSON sea válido en el sistema de compras
             validarCompraEnServicioExterno(resenaDTO.getIdCompra());
 
-            // 3. Actualizar los campos con lo que mandaste en Postman
-            logger.info("Actualizando campos de la entidad existente...");
             existente.setCliente(resenaDTO.getCliente());
             existente.setCalificacion(resenaDTO.getCalificacion());
             existente.setComentario(resenaDTO.getComentario());
-            existente.setIdCompra(resenaDTO.getIdCompra()); // Ojo aquí si cambias la compra
+            existente.setIdCompra(resenaDTO.getIdCompra());
 
-            // 4. Guardar los cambios en la base de datos
             Resena actualizada = resenaRepository.save(existente);
             logger.info("===> [PUT] Reseña ID {} actualizada con éxito", id);
             
@@ -114,36 +106,36 @@ public class ResenaService {
         }
     }
 
+    // ✅ CORREGIDO: Ya no usa localhost:9090 hardcodeado, usa el WebClient con baseUrl
     private void validarCompraEnServicioExterno(Long idCompra) {
         if (idCompra == null) {
             throw new RuntimeException("El campo 'idCompra' no puede ser nulo");
         }
 
-        String uri = String.format("http://localhost:9090/compras/%s/exists", idCompra);
-        logger.info("Consumiendo endpoint de validación: {}", uri);
+        logger.info("Consumiendo endpoint de validación para compra ID: {}", idCompra);
 
-        String respuesta;
+        Boolean existeCompra;
         try {
-            respuesta = webClient.get()
-                    .uri(uri)
+            existeCompra = webClient.get()
+                    .uri(String.format(compraPath, idCompra))
                     .retrieve()
-                    .bodyToMono(String.class)
+                    .bodyToMono(Boolean.class)
                     .block();
         } catch (Exception e) {
             logger.error("Fallo de conexión WebClient hacia la Gateway: {}", e.getMessage());
-            throw new RuntimeException("No se pudo establecer comunicación con el servicio de compras en el puerto 9090");
+            throw new RuntimeException("No se pudo establecer comunicación con el servicio de compras");
         }
 
-        logger.info("Respuesta cruda de la Gateway: [{}]", respuesta);
+        logger.info("Respuesta de la Gateway: [{}]", existeCompra);
 
-        if (respuesta == null) {
+        if (existeCompra == null) {
             throw new RuntimeException("El servicio de compras retornó una respuesta vacía");
         }
 
-        boolean existe = respuesta.trim().equalsIgnoreCase("true");
-        if (!existe) {
+        if (Boolean.FALSE.equals(existeCompra)) {
             throw new RuntimeException("La compra con ID " + idCompra + " no existe en el sistema");
         }
+
         logger.info("Validación exitosa: La compra con ID {} es válida", idCompra);
     }
 }

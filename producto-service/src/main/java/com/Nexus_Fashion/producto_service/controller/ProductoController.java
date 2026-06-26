@@ -62,6 +62,12 @@ public class ProductoController {
         return ResponseEntity.ok(ProductoDTO.fromModel(producto));
     }
 
+
+    @GetMapping("/{id}/exists")
+    public ResponseEntity<Boolean> existeProducto(@PathVariable Long id) {
+        return ResponseEntity.ok(productoService.existePorId(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ProductoDTO> actualizarProducto(@PathVariable Long id, @Valid @RequestBody ProductoDTO productoDto) {
         logger.info("PUT /productos/{} - Iniciando actualización", id);

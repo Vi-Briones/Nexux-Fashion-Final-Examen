@@ -57,6 +57,17 @@ public class ProductoService {
         return producto;
     }
 
+    public boolean existePorId(Long id) {
+    logger.info("Servicio Producto: Evaluando existencia en la base de datos para el ID={}", id);
+    boolean existe = productoRepository.existsById(id);
+    if (existe) {
+        logger.info("Servicio Producto: Confirmado. El ID={} SÍ existe.", id);
+    } else {
+        logger.warn("Servicio Producto: El ID={} NO existe.", id);
+    }
+    return existe;
+}
+
     public Producto actualizar(Long id, Producto productoActualizado) {
         logger.info("Servicio Producto: Iniciando actualización del producto con ID={}", id);
         

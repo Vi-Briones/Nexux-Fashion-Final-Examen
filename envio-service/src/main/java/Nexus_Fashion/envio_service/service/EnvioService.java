@@ -19,61 +19,45 @@ public class EnvioService {
     private final EnvioRepository envioRepository;
     private final WebClient webClient;
 
-    // Ruta inyectada desde application.properties que apunta al Gateway (puerto 9090)
     @Value("${api.compra.exists}")
     private String compraPath;
 
-    public EnvioService(EnvioRepository envioRepository) {
+
+    public EnvioService(EnvioRepository envioRepository, WebClient webClient) {
         this.envioRepository = envioRepository;
-        this.webClient = WebClient.create();
+        this.webClient = webClient;
     }
 
-    /**
-     * LÓGICA DE ESCRITURA (POST)
-     * Valida la compra usando WebClient antes de guardar el envío en las dos tablas.
-     */
     public Envio guardar(Envio envio) {
         logger.info("Aduana de Envíos: Verificando validez de la compra ID={} con el microservicio de Compras", envio.getIdCompra());
         
         Boolean existeCompra;
         try {
-            // Consumo síncrono por WebClient apuntando al ecosistema unificado
             existeCompra = webClient.get()
                     .uri(String.format(compraPath, envio.getIdCompra()))
                     .retrieve()
                     .bodyToMono(Boolean.class)
-                    .block(); // Esperamos la respuesta booleana real
+                    .block();
                     
         } catch (Exception e) {
             logger.error("Aduana de Envíos - ERROR: Falló la comunicación con compra-service para ID={}", envio.getIdCompra(), e);
             throw new RuntimeException("Servicio de Compras no disponible temporalmente. Intente más tarde.");
         }
 
-        // Si la compra no existe o devuelve nulo, frena la transacción
         if (Boolean.FALSE.equals(existeCompra) || existeCompra == null) {
             logger.warn("Aduana de Envíos - RECHAZADO: La compra ID={} no existe en el sistema Nexus Fashion", envio.getIdCompra());
             throw new RuntimeException("Operación inválida: La compra especificada no existe.");
         }
 
         logger.info("Aduana de Envíos - APROBADO: Compra existente. Insertando registros en 'envios' y 'detalles_envio'");
-        
-        // Gracias a CascadeType.ALL en el modelo Envio, guardar la cabecera guarda automáticamente el detalle
         return envioRepository.save(envio);
     }
 
-    /**
-     * LÓGICA DE LECTURA (GET ALL)
-     * Recupera todos los registros de despachos guardados.
-     */
     public List<Envio> obtenerTodos() {
         logger.info("Servicio Envíos: Buscando todos los registros en la base de datos");
         return envioRepository.findAll();
     }
 
-    /**
-     * LÓGICA DE LECTURA (GET BY ID)
-     * Busca un despacho específico mediante su clave primaria.
-     */
     public Envio buscarPorId(Long id) {
         logger.info("Servicio Envíos: Buscando registro con ID={}", id);
         return envioRepository.findById(id).orElse(null);

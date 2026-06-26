@@ -35,14 +35,14 @@ public class ResenaController {
 
     // 3. Endpoint para guardar una nueva reseña
     @PostMapping
-    public ResponseEntity<ResenaDTO> guardar(@RequestBody ResenaDTO resenaDTO) {
+    public ResponseEntity<ResenaDTO> guardar(@Valid @RequestBody ResenaDTO resenaDTO) {
         ResenaDTO creada = resenaService.guardar(resenaDTO);
         return new ResponseEntity<>(creada, HttpStatus.CREATED); 
     }
 
     // 4. Endpoint para actualizar una reseña existente por su ID
     @PutMapping("/{id}")
-    public ResponseEntity<ResenaDTO> actualizar(@PathVariable Long id, @RequestBody ResenaDTO resenaDTO) {
+    public ResponseEntity<ResenaDTO> actualizar(@PathVariable Long id, @Valid @RequestBody ResenaDTO resenaDTO) {
         ResenaDTO actualizada = resenaService.actualizar(id, resenaDTO);
         return ResponseEntity.ok(actualizada);
     }
