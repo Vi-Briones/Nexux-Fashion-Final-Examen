@@ -2,6 +2,10 @@ package Nexus_Fashion.envio_service.dto;
 
 import Nexus_Fashion.envio_service.model.DetalleEnvio;
 import Nexus_Fashion.envio_service.model.Envio;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,38 +15,40 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Builder
 public class EnvioDTO {
+
+    @NotNull(message = "El ID de la compra es obligatorio")
     private Long idCompra;
+
+    @NotBlank(message = "La dirección de destino es obligatoria")
+    @Size(min = 5, max = 200, message = "La dirección debe tener entre 5 y 200 caracteres")
     private String direccionDestino;
+
+    @NotBlank(message = "La comuna es obligatoria")
+    @Size(min = 2, max = 100, message = "La comuna debe tener entre 2 y 100 caracteres")
+    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", message = "La comuna solo puede contener letras y espacios")
     private String comuna;
 
-    // Transforma el DTO a las entidades Envio y DetalleEnvio vinculadas entre sí
     public Envio toModel() {
-        // 1. Creamos la cabecera (Envio)
         Envio envio = Envio.builder()
                 .idCompra(this.idCompra)
                 .estadoEnvio("PENDIENTE")
                 .fechaEnvio(LocalDateTime.now())
-                .detalles(new ArrayList<>()) // Inicializamos la lista de detalles
+                .detalles(new ArrayList<>())
                 .build();
 
-        // 2. Creamos el detalle (DetalleEnvio) y lo vinculamos con la cabecera
         DetalleEnvio detalle = DetalleEnvio.builder()
                 .direccionDestino(this.direccionDestino)
                 .comuna(this.comuna)
-                .envio(envio) // Relación bidireccional: el detalle conoce a su envío
+                .envio(envio)
                 .build();
 
-        // 3. Agregamos el detalle a la lista de la cabecera
         envio.getDetalles().add(detalle);
-
         return envio;
     }
 
-    // Transforma el Modelo de la base de datos de vuelta a un DTO limpio para la respuesta
     public static EnvioDTO fromModel(Envio envio) {
         if (envio == null) return null;
-        
-        // Tomamos el primer detalle de la lista para extraer la dirección y comuna
+
         String direccion = "";
         String com = "";
         if (envio.getDetalles() != null && !envio.getDetalles().isEmpty()) {

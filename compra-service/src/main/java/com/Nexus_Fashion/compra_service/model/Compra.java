@@ -15,13 +15,15 @@ public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
+    private Long id;
 
+    @Column(name = "id_cliente", nullable = false)  // ✅ mapeo explícito
     private Long idCliente;
+
+    @Column(nullable = false)
     private Double total;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_compra_ref") 
-    private List<DetalleCompra> detalles;
-
+@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+@JoinColumn(name = "id_compra_ref", nullable = false)  // ✅ nullable = false fuerza el orden correcto
+private List<DetalleCompra> detalles;
 }

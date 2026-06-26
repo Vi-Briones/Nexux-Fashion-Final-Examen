@@ -27,30 +27,27 @@ public class CompraService {
     @Value("${api.producto.exists}")
     private String productoPath;
 
-    public CompraService(CompraRepository compraRepository) {
+    
+    public CompraService(CompraRepository compraRepository, WebClient webClient) {
         this.compraRepository = compraRepository;
-        this.webClient = WebClient.create(); 
+        this.webClient = webClient;
     }
 
-    public Compra guardar(Compra compra) {
+     public Compra guardar(Compra compra) {
         logger.info("===> [POST] Iniciando guardado de compra");
         try {
-            // 1. Validar la existencia del cliente y producto con Tolerancia a Fallos (Fallback)
             try {
                 logger.info("Validando cliente ID: {} y producto ID: {} en servicio externo...", 
                         compra.getIdCliente(), compra.getDetalles().get(0).getIdProducto());
                 
-                // Aquí se ejecutan tus llamadas WebClient nativas
                 validarClienteYProductoEnServicioExterno(compra);
                 
                 logger.info("Cliente y Producto validados con éxito en el servicio externo.");
             } catch (Exception e) {
-                // FALLBACK ACTIVO: Si el microservicio externo no responde o falla la red de Docker
                 logger.error("[FALLBACK ACTIVO] No se pudo conectar con el servicio externo mediante API Gateway. " +
                              "Se asume que los datos existen para no congelar el flujo de compras. Detalles: {}", e.getMessage());
             }
 
-            // 2. Persistir en Base de Datos de XAMPP / MySQL
             logger.info("Guardando entidad en la base de datos...");
             Compra compraGuardada = compraRepository.save(compra);
             
@@ -63,7 +60,6 @@ public class CompraService {
         }
     }
 
-    // Método auxiliar de validación que contiene la lógica WebClient de tu profesor
     private void validarClienteYProductoEnServicioExterno(Compra compra) {
         Boolean existeCliente = webClient.get()
                 .uri(String.format(clientePath, compra.getIdCliente()))

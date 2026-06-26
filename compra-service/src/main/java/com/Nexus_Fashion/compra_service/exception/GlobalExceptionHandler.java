@@ -6,8 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.reactive.function.client.WebClientRequestException;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -26,29 +24,14 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI());
     }
 
-    @ExceptionHandler(WebClientResponseException.class)
-    public ResponseEntity<ApiErrorResponse> handleWebClientResponse(WebClientResponseException ex,
-            HttpServletRequest request) {
-        HttpStatus status = (HttpStatus) ex.getStatusCode();
-        if (status == null) {
-            status = HttpStatus.BAD_GATEWAY;
-        }
-        return buildResponse(status, "Error de comunicación con servicio externo: " + ex.getMessage(),
-                request.getRequestURI());
-    }
-
-    @ExceptionHandler(WebClientRequestException.class)
-    public ResponseEntity<ApiErrorResponse> handleWebClientRequest(WebClientRequestException ex,
-            HttpServletRequest request) {
-        return buildResponse(HttpStatus.BAD_GATEWAY,
-                "No se pudo establecer conexión con el servicio externo: " + ex.getMessage(),
-                request.getRequestURI());
-    }
+    // ✅ ELIMINADOS: handleWebClientResponse y handleWebClientRequest
+    // El CompraService ya tiene su propio fallback que maneja estos errores
+    // y permite que la compra se guarde igual aunque el servicio externo falle
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiErrorResponse> handleGeneralException(Exception ex, HttpServletRequest request) {
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR,
-                "Ocurrió un error inesperado: " + ex.getMessage(), request.getRequestURI());
+public ResponseEntity<ApiErrorResponse> handleGeneralException(Exception ex, HttpServletRequest request) {
+    return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR,
+            "Ocurrió un error inesperado: " + ex.getMessage(), request.getRequestURI());
     }
 
     private ResponseEntity<ApiErrorResponse> buildResponse(HttpStatus status, String message, String path) {

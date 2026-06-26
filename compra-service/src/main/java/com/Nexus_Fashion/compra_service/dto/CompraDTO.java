@@ -1,5 +1,8 @@
 package com.Nexus_Fashion.compra_service.dto;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,25 +19,34 @@ import com.Nexus_Fashion.compra_service.model.DetalleCompra;
 public class CompraDTO {
 
     private Long id;
+
+    @NotNull(message = "El ID del cliente es obligatorio")
     private Long idCliente;
+
+    @NotNull(message = "El ID del producto es obligatorio")
     private Long idProducto;
+
+    @NotNull(message = "La cantidad es obligatoria")
+    @Min(value = 1, message = "La cantidad mínima es 1")
     private Integer cantidad;
+
+    @NotNull(message = "El precio unitario es obligatorio")
+    @DecimalMin(value = "0.01", message = "El precio unitario debe ser mayor a 0")
     private Double precioUnitario;
+
+    @NotNull(message = "El total es obligatorio")
+    @DecimalMin(value = "0.01", message = "El total debe ser mayor a 0")
     private Double total;
 
-    // MÉTODO TO_MODEL: Convierte el DTO plano en la estructura de 2 tablas
     public Compra toModel() {
-        // 1. Creamos el objeto para la tabla de detalle
         DetalleCompra detalle = new DetalleCompra();
         detalle.setIdProducto(this.idProducto);
         detalle.setCantidad(this.cantidad);
         detalle.setPrecioUnitario(this.precioUnitario);
 
-        // 2. Metemos el detalle en una lista (requisito del modelo)
         List<DetalleCompra> detalles = new ArrayList<>();
         detalles.add(detalle);
 
-        // 3. Retornamos la Compra con su lista de detalles
         Compra compra = new Compra();
         compra.setId(this.id);
         compra.setIdCliente(this.idCliente);
@@ -44,12 +56,10 @@ public class CompraDTO {
         return compra;
     }
 
-    // MÉTODO FROM_MODEL: Convierte las 2 tablas en un DTO plano para mostrarlo
     public static CompraDTO fromModel(Compra c) {
         if (c == null) return null;
 
-        // Extraemos el primer detalle de la lista para aplanar los datos
-        DetalleCompra d = (c.getDetalles() != null && !c.getDetalles().isEmpty()) 
+        DetalleCompra d = (c.getDetalles() != null && !c.getDetalles().isEmpty())
                           ? c.getDetalles().get(0) : new DetalleCompra();
 
         return new CompraDTO(
@@ -61,5 +71,4 @@ public class CompraDTO {
             c.getTotal()
         );
     }
-
 }

@@ -1,93 +1,92 @@
-  x-common-env: &common-env
-    SECRET: "esta_es_mi_compleja_clave_secreta"
+x-common-env: &common-env
+  SECRET: "esta_es_mi_compleja_clave_secreta"
 
-  services:
+services:        
 
-    api-gateway:
-      build: ./api-gateway
-      ports:
-        - "9090:9090"
-      environment:
-        <<: *common-env
-      depends_on:
-        - cliente-service
-        - compra-service
-        - envio-service
-        - inventario-service
-        - producto-service
-        - resena-service
-        - venta-service
-        - notificacion-service
-        - soporte-service
-        - recomendaciones-service
-        
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "9090:9090"
+    environment:
+      <<: *common-env
+    depends_on:
+      - cliente-service
+      - compra-service
+      - envio-service
+      - inventario-service
+      - producto-service
+      - resena-service
+      - venta-service
+      - notificacion-service
+      - soporte-service
+      - recomendaciones-service
 
-    cliente-service:
-      build: ./cliente-service
-      ports:
-        - "9091:9091"
-      environment:
-        <<: *common-env
+  cliente-service:
+    build: ./cliente-service
+    ports:
+      - "9091:9091"
+    environment:
+      <<: *common-env
 
-    compra-service:
-      build: ./compra-service
-      ports:
-        - "9092:9092"
-      environment:
-        <<: *common-env
+  compra-service:
+    build: ./compra-service
+    ports:
+      - "9092:9092"
+    environment:
+      <<: *common-env
 
-    producto-service:
-      build: ./producto-service
-      ports:
-        - "9093:9093"
-      environment:
-        <<: *common-env
+  producto-service:
+    build: ./producto-service
+    ports:
+      - "9093:9093"
+    environment:
+      <<: *common-env
 
-    venta-service:
-      build: ./venta-service
-      ports:
-        - "9094:9094"
-      environment:
-        <<: *common-env
+  venta-service:
+    build: ./venta-service
+    ports:
+      - "9094:9094"
+    environment:
+      <<: *common-env
 
-    envio-service:
-      build: ./envio-service
-      ports:
-        - "9095:9095"
-      environment:
-        <<: *common-env
+  envio-service:
+    build: ./envio-service
+    ports:
+      - "9095:9095"
+    environment:
+      <<: *common-env
 
-    inventario-service:
-      build: ./inventario-service
-      ports:
-        - "9096:9096"
-      environment:
-        <<: *common-env
+  inventario-service:
+    build: ./inventario-service
+    ports:
+      - "9096:9096"
+    environment:
+      <<: *common-env
 
-    resena-service:
-      build: ./resena-service
-      ports:
-        - "9097:9097"
-      environment:
-        <<: *common-env
+  resena-service:
+    build: ./resena-service
+    ports:
+      - "9097:9097"
+    environment:
+      <<: *common-env
 
-    notificacion-service:
-      build: ./notificacion-service
-      ports:
-        - "9098:9098"
-      environment:
-        <<: *common-env
+  notificacion-service:
+    build: ./notificacion-service
+    ports:
+      - "9098:9098"
+    environment:
+      <<: *common-env
 
-    soporte-service:
-      build: ./soporte-service
-      ports:
-        - "9099:9099"
-      environment:
-        <<: *common-env
+  soporte-service:
+    build: ./soporte-service
+    ports:
+      - "9099:9099"
+    environment:
+      <<: *common-env
 
-    recomendaciones-service:
-      build: ./recomendaciones-service
-      ports:
-        - "9100:9100"
-      environment:
-        <<: *common-env
+  recomendaciones-service:
+    build: ./recomendaciones-service
+    ports:
+      - "9100:9100"
+    environment:
+      <<: *common-env
