@@ -9,8 +9,6 @@ import com.Nexus_Fashion.cliente_service.dto.ClienteDTO;
 import com.Nexus_Fashion.cliente_service.model.Cliente;
 import com.Nexus_Fashion.cliente_service.service.ClienteService;
 
-import jakarta.validation.Valid;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +26,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> crearCliente(@Valid @RequestBody ClienteDTO clienteDto) {
+    public ResponseEntity<ClienteDTO> crearCliente(@RequestBody ClienteDTO clienteDto) {
         logger.info("POST /clientes - Intentando registrar un nuevo cliente");
         Cliente nuevoCliente = clienteService.guardar(clienteDto.toModel());
         logger.info("POST /clientes - Cliente registrado con éxito de forma interna");
@@ -58,14 +56,9 @@ public class ClienteController {
         logger.info("GET /clientes/{} - Cliente recuperado exitosamente", id);
         return ResponseEntity.ok(ClienteDTO.fromModel(cliente));
     }
-    
-    @GetMapping("/{id}/exists")
-    public ResponseEntity<Boolean> existeCliente(@PathVariable Long id) {
-        return ResponseEntity.ok(clienteService.existePorId(id));
-    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ClienteDTO> actualizarCliente(@PathVariable Long id,@Valid @RequestBody ClienteDTO clienteDto) {
+    public ResponseEntity<ClienteDTO> actualizarCliente(@PathVariable Long id, @RequestBody ClienteDTO clienteDto) {
         logger.info("PUT /clientes/{} - Iniciando actualización", id);
         try {
             Cliente actualizado = clienteService.actualizar(id, clienteDto.toModel());

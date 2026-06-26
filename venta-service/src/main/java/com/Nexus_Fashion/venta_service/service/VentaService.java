@@ -4,8 +4,6 @@ import com.Nexus_Fashion.venta_service.dto.VentaDTO;
 import com.Nexus_Fashion.venta_service.model.Venta;
 import com.Nexus_Fashion.venta_service.repository.VentaRepository;
 
-
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -108,6 +106,30 @@ public class VentaService {
 
         ventaRepository.deleteById(id);
         logger.info("Servicio Ventas: Venta ID={} eliminada exitosamente", id);
+    }
+
+    public double calcularIVA(double monto) {
+        if (monto < 0) {
+            throw new IllegalArgumentException("Error: El monto no puede ser negativo.");
+        }
+        return monto * 0.19;
+    }
+
+    public double aplicarDescuento(double monto, double porcentaje) {
+        if (porcentaje < 0 || porcentaje > 100) {
+            throw new IllegalArgumentException("Error: El porcentaje de descuento debe estar entre 0 y 100.");
+        }
+        return monto * (porcentaje / 100);
+    }
+
+    public double calcularRecargoPorMetodoPago(double monto, String metodoPago) {
+        if (monto < 0) {
+            throw new IllegalArgumentException("Error: El monto no puede ser negativo.");
+        }
+        if ("TARJETA_CREDITO".equalsIgnoreCase(metodoPago)) {
+            return monto * 0.05;
+        }
+        return 0.0;
     }
 }
 

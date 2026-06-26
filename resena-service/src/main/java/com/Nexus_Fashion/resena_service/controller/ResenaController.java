@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import com.Nexus_Fashion.resena_service.dto.ResenaDTO;
 import com.Nexus_Fashion.resena_service.service.ResenaService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/resenas")
