@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.Nexus_Fashion.recomendaciones_service.model.Recomendacion;
@@ -12,6 +13,7 @@ import com.Nexus_Fashion.recomendaciones_service.model.Recomendacion;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class RecomendacionDTO {
 
     private Long id;
@@ -48,13 +50,13 @@ public class RecomendacionDTO {
     public static RecomendacionDTO fromModel(Recomendacion r) {
         if (r == null) return null;
 
-        return new RecomendacionDTO(
-            r.getId(),
-            r.getIdCliente(),
-            r.getIdProducto(),
-            r.getTipoRecomendacion(),
-            r.getComentario(),
-            r.getPuntajeAfinidad()
-        );
+        return RecomendacionDTO.builder()
+            .id(r.getId())
+            .idCliente(r.getIdCliente())        
+            .idProducto(r.getIdProducto())
+            .tipoRecomendacion(r.getTipoRecomendacion())
+            .comentario(r.getComentario())
+            .puntajeAfinidad(r.getPuntajeAfinidad())
+            .build();
     }
 }

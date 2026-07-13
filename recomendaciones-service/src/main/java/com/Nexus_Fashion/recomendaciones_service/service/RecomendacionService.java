@@ -26,19 +26,21 @@ public class RecomendacionService {
     @Value("${api.producto.exists}")
     private String productoPath;
 
+    // WebClient ahora se inyecta como @Bean desde RecomendacionesServiceApplication,
+    // igual que en CompraService — esto lo hace mockeable en tests unitarios.
     public RecomendacionService(RecomendacionRepository recomendacionRepository,
-            @Value("${api.base-url}") String apiBaseUrl) {
+            WebClient webClient) {
         this.recomendacionRepository = recomendacionRepository;
-        this.webClient = WebClient.builder()
-                .baseUrl(apiBaseUrl)
-                .build();
+        this.webClient = webClient;
     }
 
     public Recomendacion guardar(Recomendacion recomendacion) {
         logger.info("Iniciando proceso de guardado de recomendacion: idCliente={}, idProducto={}",
                 recomendacion.getIdCliente(), recomendacion.getIdProducto());
+
         Boolean existeCliente;
         Boolean existeProducto;
+
         try {
             logger.debug("Validando existencia de cliente id={}", recomendacion.getIdCliente());
             existeCliente = webClient.get()
@@ -51,8 +53,9 @@ public class RecomendacionService {
             logger.error("Error al validar cliente id={}", recomendacion.getIdCliente(), e);
             throw new BadRequestException("Error al validar cliente");
         }
+
         try {
-            Long idProducto =  recomendacion.getIdProducto();
+            Long idProducto = recomendacion.getIdProducto();
             logger.debug("Validando existencia de producto id={}", idProducto);
             existeProducto = webClient.get()
                     .uri(String.format(productoPath, idProducto))
@@ -64,6 +67,7 @@ public class RecomendacionService {
             logger.error("Error al validar producto id={}", recomendacion.getIdProducto(), e);
             throw new BadRequestException("Error al validar producto");
         }
+
         // Validaciones de negocio
         if (existeCliente == null) {
             logger.warn("Respuesta nula al validar cliente id={}", recomendacion.getIdCliente());
@@ -81,6 +85,7 @@ public class RecomendacionService {
             logger.warn("Producto no existe id={}", recomendacion.getIdProducto());
             throw new ResourceNotFoundException("Producto no existe");
         }
+
         Recomendacion recomendacionGuardar = recomendacionRepository.save(recomendacion);
         logger.info("Recomendacion guardada exitosamente con id={}", recomendacionGuardar.getId());
         return recomendacionGuardar;
@@ -123,27 +128,26 @@ public class RecomendacionService {
     }
 
     public Recomendacion actualizar(Long id, Recomendacion recomendacionActualizada) {
-    logger.info("Actualizando recomendacion con ID={}", id);
+        logger.info("Actualizando recomendacion con ID={}", id);
 
-    Recomendacion recomendacion = recomendacionRepository.findById(id).orElse(null);
-    if (recomendacion == null) {
-        logger.warn("No existe recomendacion con ID={} para actualizar", id);
-        throw new ResourceNotFoundException("Recomendacion no encontrada");
+        Recomendacion recomendacion = recomendacionRepository.findById(id).orElse(null);
+        if (recomendacion == null) {
+            logger.warn("No existe recomendacion con ID={} para actualizar", id);
+            throw new ResourceNotFoundException("Recomendacion no encontrada");
+        }
+
+        recomendacion.setTipoRecomendacion(recomendacionActualizada.getTipoRecomendacion());
+        recomendacion.setComentario(recomendacionActualizada.getComentario());
+        recomendacion.setPuntajeAfinidad(recomendacionActualizada.getPuntajeAfinidad());
+
+        Recomendacion actualizada = recomendacionRepository.save(recomendacion);
+        logger.info("Recomendacion ID={} actualizada exitosamente", id);
+        return actualizada;
     }
-
-    recomendacion.setTipoRecomendacion(recomendacionActualizada.getTipoRecomendacion());
-    recomendacion.setComentario(recomendacionActualizada.getComentario());
-    recomendacion.setPuntajeAfinidad(recomendacionActualizada.getPuntajeAfinidad());
-
-    Recomendacion actualizada = recomendacionRepository.save(recomendacion);
-    logger.info("Recomendacion ID={} actualizada exitosamente", id);
-    
-    return actualizada;
-}
 
     public void eliminar(Long id) {
         logger.info("Eliminando recomendacion con ID={}", id);
-        
+
         if (!recomendacionRepository.existsById(id)) {
             logger.warn("No existe recomendacion con ID={} para eliminar", id);
             throw new ResourceNotFoundException("Recomendacion no encontrada");

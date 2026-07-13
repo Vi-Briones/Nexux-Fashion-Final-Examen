@@ -1,257 +1,224 @@
 package com.Nexus_Fashion.compra_service.CompraControllerTest;
 
+import com.Nexus_Fashion.compra_service.controller.CompraController;
+import com.Nexus_Fashion.compra_service.dto.CompraDTO;
+import com.Nexus_Fashion.compra_service.exception.GlobalExceptionHandler;
 import com.Nexus_Fashion.compra_service.exception.ResourceNotFoundException;
 import com.Nexus_Fashion.compra_service.model.Compra;
 import com.Nexus_Fashion.compra_service.model.DetalleCompra;
-import com.Nexus_Fashion.compra_service.repository.CompraRepository;
 import com.Nexus_Fashion.compra_service.service.CompraService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Tests unitarios - CompraService")
-class CompraServiceTest {
+class CompraControllerTest {
+
+    private MockMvc mockMvc;
 
     @Mock
-    private CompraRepository compraRepository;
-
-    @Mock
-    private WebClient webClient;
-
-    @InjectMocks
     private CompraService compraService;
 
-    private Compra compraMock;
-    private DetalleCompra detalleMock;
+    private ObjectMapper objectMapper;
+
+    private Compra compraEjemplo;
+    private CompraDTO compraDtoRequest;
 
     @BeforeEach
     void setUp() {
-        detalleMock = new DetalleCompra();
-        detalleMock.setIdDetalle(1L);
-        detalleMock.setIdProducto(10L);
-        detalleMock.setCantidad(2);
-        detalleMock.setPrecioUnitario(5000.0);
+        CompraController controller = new CompraController(compraService);
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new GlobalExceptionHandler())
+                .build();
+        objectMapper = new ObjectMapper();
 
-        compraMock = new Compra();
-        compraMock.setId(1L);
-        compraMock.setIdCliente(100L);
-        compraMock.setTotal(10000.0);
-        compraMock.setDetalles(Collections.singletonList(detalleMock));
-    }
+        DetalleCompra detalle = new DetalleCompra();
+        detalle.setIdProducto(10L);
+        detalle.setCantidad(2);
+        detalle.setPrecioUnitario(25000.0);
 
-    // =====================================================================
-    // PRUEBAS CRUD BÁSICAS
-    // =====================================================================
+        compraEjemplo = new Compra();
+        compraEjemplo.setId(1L);
+        compraEjemplo.setIdCliente(100L);
+        compraEjemplo.setTotal(50000.0);
+        compraEjemplo.setDetalles(Collections.singletonList(detalle));
 
-    @Test
-    @DisplayName("listar() debe retornar todas las compras existentes")
-    void listar_debeRetornarTodasLasCompras() {
-        Compra compra2 = new Compra(2L, 200L, 3000.0, Collections.singletonList(detalleMock));
-        when(compraRepository.findAll()).thenReturn(Arrays.asList(compraMock, compra2));
-
-        List<Compra> resultado = compraService.listar();
-
-        assertNotNull(resultado);
-        assertEquals(2, resultado.size());
-        verify(compraRepository, times(1)).findAll();
+        compraDtoRequest = new CompraDTO(null, 100L, 10L, 2, 25000.0, 50000.0);
     }
 
     @Test
-    @DisplayName("listar() debe retornar lista vacía cuando no hay compras")
-    void listar_debeRetornarListaVaciaSinCompras() {
-        when(compraRepository.findAll()).thenReturn(Collections.emptyList());
+    void testCrearCompra_retorna201() throws Exception {
+        when(compraService.guardar(any(Compra.class))).thenReturn(compraEjemplo);
 
-        List<Compra> resultado = compraService.listar();
+        mockMvc.perform(post("/compras")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(compraDtoRequest)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.idCliente").value(100))
+                .andExpect(jsonPath("$.idProducto").value(10));
 
-        assertNotNull(resultado);
-        assertTrue(resultado.isEmpty());
-        verify(compraRepository, times(1)).findAll();
+        verify(compraService, times(1)).guardar(any(Compra.class));
     }
 
     @Test
-    @DisplayName("buscarPorId() debe retornar la compra correcta cuando el ID existe")
-    void buscarPorId_debeRetornarCompra_cuandoExiste() {
-        when(compraRepository.findById(1L)).thenReturn(Optional.of(compraMock));
+    void testListarCompras_retornaLista() throws Exception {
+        when(compraService.listar()).thenReturn(Collections.singletonList(compraEjemplo));
 
-        Compra resultado = compraService.buscarPorId(1L);
+        mockMvc.perform(get("/compras")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").value(1L))
+                .andExpect(jsonPath("$[0].idCliente").value(100));
 
-        assertNotNull(resultado);
-        assertEquals(1L, resultado.getId());
-        assertEquals(100L, resultado.getIdCliente());
-        assertEquals(10000.0, resultado.getTotal());
-        verify(compraRepository, times(1)).findById(1L);
+        verify(compraService, times(1)).listar();
     }
 
     @Test
-    @DisplayName("buscarPorId() debe retornar null cuando el ID no existe")
-    void buscarPorId_debeRetornarNull_cuandoNoExiste() {
-        when(compraRepository.findById(99L)).thenReturn(Optional.empty());
+    void testObtenerCompra_encontrada_retorna200() throws Exception {
+        when(compraService.buscarPorId(1L)).thenReturn(compraEjemplo);
 
-        Compra resultado = compraService.buscarPorId(99L);
+        mockMvc.perform(get("/compras/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L));
 
-        assertNull(resultado);
-        verify(compraRepository, times(1)).findById(99L);
+        verify(compraService, times(1)).buscarPorId(1L);
     }
 
     @Test
-    @DisplayName("existePorId() debe retornar true cuando la compra existe")
-    void existePorId_debeRetornarTrue_cuandoExiste() {
-        when(compraRepository.existsById(1L)).thenReturn(true);
+    void testObtenerCompra_noEncontrada_retorna404() throws Exception {
+        when(compraService.buscarPorId(99L)).thenReturn(null);
 
-        boolean resultado = compraService.existePorId(1L);
+        mockMvc.perform(get("/compras/99")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
 
-        assertTrue(resultado);
-        verify(compraRepository, times(1)).existsById(1L);
+        verify(compraService, times(1)).buscarPorId(99L);
     }
 
     @Test
-    @DisplayName("existePorId() debe retornar false cuando la compra no existe")
-    void existePorId_debeRetornarFalse_cuandoNoExiste() {
-        when(compraRepository.existsById(99L)).thenReturn(false);
+    void testExisteCompra_retornaTrue() throws Exception {
+        when(compraService.existePorId(1L)).thenReturn(true);
 
-        boolean resultado = compraService.existePorId(99L);
+        mockMvc.perform(get("/compras/1/exists")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("true"));
 
-        assertFalse(resultado);
-        verify(compraRepository, times(1)).existsById(99L);
+        verify(compraService, times(1)).existePorId(1L);
     }
 
     @Test
-    @DisplayName("actualizar() debe lanzar ResourceNotFoundException cuando el ID no existe")
-    void actualizar_debeLanzarExcepcion_cuandoNoExiste() {
-        when(compraRepository.findById(99L)).thenReturn(Optional.empty());
+    void testExisteCompra_retornaFalse() throws Exception {
+        when(compraService.existePorId(2L)).thenReturn(false);
 
-        assertThrows(ResourceNotFoundException.class,
-                () -> compraService.actualizar(99L, compraMock));
+        mockMvc.perform(get("/compras/2/exists")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("false"));
 
-        verify(compraRepository, times(1)).findById(99L);
-        verify(compraRepository, never()).save(any());
+        verify(compraService, times(1)).existePorId(2L);
     }
 
     @Test
-    @DisplayName("actualizar() debe guardar y retornar la compra actualizada")
-    void actualizar_debeRetornarCompraActualizada_cuandoExiste() {
-        Compra compraActualizada = new Compra(1L, 100L, 25000.0,
-                Collections.singletonList(detalleMock));
-        when(compraRepository.findById(1L)).thenReturn(Optional.of(compraMock));
-        when(compraRepository.save(any(Compra.class))).thenReturn(compraActualizada);
+    void testActualizarCompra_exitosa_retorna200() throws Exception {
+        Compra compraActualizada = new Compra();
+        compraActualizada.setId(1L);
+        compraActualizada.setIdCliente(100L);
+        compraActualizada.setTotal(60000.0);
+        compraActualizada.setDetalles(compraEjemplo.getDetalles());
 
-        Compra resultado = compraService.actualizar(1L, compraActualizada);
+        when(compraService.actualizar(eq(1L), any(Compra.class))).thenReturn(compraActualizada);
 
-        assertNotNull(resultado);
-        assertEquals(25000.0, resultado.getTotal());
-        verify(compraRepository, times(1)).save(any(Compra.class));
+        mockMvc.perform(put("/compras/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(compraDtoRequest)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.total").value(60000.0));
+
+        verify(compraService, times(1)).actualizar(eq(1L), any(Compra.class));
     }
 
     @Test
-    @DisplayName("eliminar() debe lanzar ResourceNotFoundException cuando el ID no existe")
-    void eliminar_debeLanzarExcepcion_cuandoNoExiste() {
-        when(compraRepository.existsById(99L)).thenReturn(false);
+    void testActualizarCompra_noExiste_retorna404() throws Exception {
+        when(compraService.actualizar(eq(99L), any(Compra.class)))
+                .thenThrow(new ResourceNotFoundException("Compra no encontrada"));
 
-        assertThrows(ResourceNotFoundException.class,
-                () -> compraService.eliminar(99L));
+        mockMvc.perform(put("/compras/99")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(compraDtoRequest)))
+                .andExpect(status().isNotFound());
 
-        verify(compraRepository, never()).deleteById(any());
+        verify(compraService, times(1)).actualizar(eq(99L), any(Compra.class));
     }
 
     @Test
-    @DisplayName("eliminar() debe ejecutar deleteById cuando la compra existe")
-    void eliminar_debeEliminar_cuandoExiste() {
-        when(compraRepository.existsById(1L)).thenReturn(true);
-        doNothing().when(compraRepository).deleteById(1L);
+    void testEliminarCompra_exitosa_retorna204() throws Exception {
+        doNothing().when(compraService).eliminar(1L);
 
-        assertDoesNotThrow(() -> compraService.eliminar(1L));
+        mockMvc.perform(delete("/compras/1"))
+                .andExpect(status().isNoContent());
 
-        verify(compraRepository, times(1)).deleteById(1L);
-    }
-
-    // =====================================================================
-    // PRUEBAS DE NEGOCIO (requeridas por la pauta)
-    // =====================================================================
-
-    @Test
-    @DisplayName("[NEGOCIO] totalComprasPorCliente() debe retornar el conteo correcto")
-    void totalComprasPorCliente_debeRetornarConteoReal() {
-        when(compraRepository.countByIdCliente(100L)).thenReturn(5L);
-
-        long resultado = compraService.totalComprasPorCliente(100L);
-
-        assertEquals(5L, resultado);
-        verify(compraRepository, times(1)).countByIdCliente(100L);
+        verify(compraService, times(1)).eliminar(1L);
     }
 
     @Test
-    @DisplayName("[NEGOCIO] totalComprasPorCliente() debe retornar 0 para cliente sin compras")
-    void totalComprasPorCliente_debeRetornarCero_sinCompras() {
-        when(compraRepository.countByIdCliente(999L)).thenReturn(0L);
+    void testEliminarCompra_noExiste_retorna404() throws Exception {
+        doThrow(new ResourceNotFoundException("Compra no encontrada")).when(compraService).eliminar(99L);
 
-        long resultado = compraService.totalComprasPorCliente(999L);
+        mockMvc.perform(delete("/compras/99"))
+                .andExpect(status().isNotFound());
 
-        assertEquals(0L, resultado);
+        verify(compraService, times(1)).eliminar(99L);
     }
 
     @Test
-    @DisplayName("[NEGOCIO] listarPorCliente() debe retornar solo las compras del cliente indicado")
-    void listarPorCliente_debeRetornarComprasDelCliente() {
-        Compra compraCliente = new Compra(2L, 100L, 8000.0,
-                Collections.singletonList(detalleMock));
-        when(compraRepository.findByIdCliente(100L))
-                .thenReturn(Arrays.asList(compraMock, compraCliente));
+    void testListarComprasPorCliente_retornaLista() throws Exception {
+        when(compraService.listarPorCliente(100L)).thenReturn(Collections.singletonList(compraEjemplo));
 
-        List<Compra> resultado = compraService.listarPorCliente(100L);
+        mockMvc.perform(get("/compras/cliente/100")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].idCliente").value(100));
 
-        assertEquals(2, resultado.size());
-        resultado.forEach(c -> assertEquals(100L, c.getIdCliente()));
-        verify(compraRepository, times(1)).findByIdCliente(100L);
+        verify(compraService, times(1)).listarPorCliente(100L);
     }
 
     @Test
-    @DisplayName("[NEGOCIO] listarPorCliente() debe retornar lista vacía para cliente sin compras")
-    void listarPorCliente_debeRetornarVacio_sinCompras() {
-        when(compraRepository.findByIdCliente(999L)).thenReturn(Collections.emptyList());
+    void testTotalComprasPorCliente_retornaValor() throws Exception {
+        when(compraService.totalComprasPorCliente(100L)).thenReturn(3L);
 
-        List<Compra> resultado = compraService.listarPorCliente(999L);
+        mockMvc.perform(get("/compras/cliente/100/total")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("3"));
 
-        assertTrue(resultado.isEmpty());
-    }
-
-    @Test
-    @DisplayName("[NEGOCIO] guardar() debe persistir la compra aunque el servicio externo falle (fallback activo)")
-    void guardar_debePersistir_cuandoServicioExternoFalla() {
-        // El servicio externo lanza excepción (WebClient no configurado en test)
-        // Por diseño del fallback, la compra se guarda igual
-        when(compraRepository.save(any(Compra.class))).thenReturn(compraMock);
-
-        Compra resultado = compraService.guardar(compraMock);
-
-        assertNotNull(resultado);
-        assertEquals(1L, resultado.getId());
-        verify(compraRepository, times(1)).save(any(Compra.class));
-    }
-
-    @Test
-    @DisplayName("[NEGOCIO] el total de una compra debe ser igual a cantidad × precioUnitario del detalle")
-    void total_debeSerIgualACantidadPorPrecioUnitario() {
-        int cantidad = detalleMock.getCantidad();
-        double precioUnitario = detalleMock.getPrecioUnitario();
-        double totalEsperado = cantidad * precioUnitario;
-
-        assertEquals(totalEsperado, compraMock.getTotal(),
-                "El total de la compra debe coincidir con cantidad × precioUnitario");
+        verify(compraService, times(1)).totalComprasPorCliente(100L);
     }
 }

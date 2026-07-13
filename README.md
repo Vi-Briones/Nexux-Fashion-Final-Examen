@@ -26,6 +26,10 @@ Sistema de comercio electrónico de moda basado en una arquitectura distribuida 
 
 https://github.com/Vi-Briones/Nexux-Fashion-Final-Examen.git
 
+## Tablero Trello
+
+https://trello.com/invite/b/6a53e8e136f7968441b89970/ATTIc43ff26994a9ba4b01c2228b9c5a54e56302BE42/nexus-fashion-microservicios
+
 ---
 
 ## Microservicios implementados
